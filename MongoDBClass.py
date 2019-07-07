@@ -1,3 +1,7 @@
+#Author: PlanckBit
+#MIT License
+#Copyright (c) 2019 PlanckBit
+
 import pymongo
 from DatabaseClass import DatabaseClass
 
