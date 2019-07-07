@@ -8,7 +8,8 @@ class DatabaseClass:
     
     def __init__(self, description):
         DatabaseClass.instanceCount += 1
-        DatabaseClass.instanceSeedID = random.randint(DatabaseClass.instanceSeedID+1,DatabaseClass.instanceSeedID+100)
+        DatabaseClass.instanceSeedID = random.randint(DatabaseClass.instanceSeedID+1,
+                                                      DatabaseClass.instanceSeedID+100)
         self.description = description
         
     def getDescription(self):

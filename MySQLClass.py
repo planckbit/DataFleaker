@@ -15,7 +15,10 @@ class MySQLClass(DatabaseClass):
         
     def mysqlConnectDataBase(self, databaseName):
         self.databaseName = databaseName
-        self.dbConnectorConnect = mysql.connector.connect(user=self.userName, password=self.passWord, host=self.host, database=self.databaseName)
+        self.dbConnectorConnect = mysql.connector.connect(user=self.userName,
+                                                          password=self.passWord,
+                                                          host=self.host,
+                                                          database=self.databaseName)
 
     def mysqlCreateDataBase(self, databaseName):
         ret = True
