@@ -8,76 +8,76 @@ from DatabaseClass import DatabaseClass
 class MongoDBClass(DatabaseClass):
     mongoDBInstanceCount = 0
 
-    def __init__(self, mongoDBServer):
+    def __init__(self, mongoDBServer: str):
         DatabaseClass.__init__(self, "Mongo Database")
         MongoDBClass.mongoDBInstanceCount += 1
         self.mongoDBInstanceID = DatabaseClass.instanceSeedID
         self.mongoDBServer = mongoDBServer
         self.client = pymongo.MongoClient(self.mongoDBServer)
 
-    def mongoConnectDataBase(self, databaseName):
+    def mongoConnectDataBase(self, databaseName: str):
         self.databaseName = databaseName
         return self.client[self.databaseName]
 
-    def mongoInsertOneRecord(self, collectionTable, dictRecord):
+    def mongoInsertOneRecord(self, collectionTable: str, dictRecord: dict):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.insert_one(dictRecord)
 
-    def mongoInsertManyRecords(self, collectionTable, listRecords):
+    def mongoInsertManyRecords(self, collectionTable: str, listRecords: list):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.insert_many(listRecords)
 
-    def mongoDropDataBase(self, databaseName):
+    def mongoDropDataBase(self, databaseName: str):
         return self.client.drop_database(databaseName)
 
-    def mongoDropCollectionTable(self, collectionTable):
+    def mongoDropCollectionTable(self, collectionTable: str):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.drop()
 
-    def mongoFindOne(self, collectionTable):
+    def mongoFindOne(self, collectionTable: str):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find_one()
 
-    def mongoFindAll(self, collectionTable, limit=0):
+    def mongoFindAll(self, collectionTable: str, limit=0):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find().limit(limit)
 
-    def mongoFindAllSpecificFields(self, collectionTable, dictFields, limit=0):
+    def mongoFindAllSpecificFields(self, collectionTable: str, dictFields: dict, limit=0):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find({}, dictFields).limit(limit)
 
-    def mongoFindAllFilter(self, collectionTable, dictQuery, limit=0):
+    def mongoFindAllFilter(self, collectionTable: str, dictQuery: dict, limit=0):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find(dictQuery).limit(limit)
 
-    def mongoFindAllSpecificFieldsFilter(self, collectionTable, dictQuery, dictFields, limit=0):
+    def mongoFindAllSpecificFieldsFilter(self, collectionTable: str, dictQuery: dict, dictFields: dict, limit=0):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find(dictQuery, dictFields).limit(limit)
 
-    def mongoDeleteOneRecord(self, collectionTable, dictQuery):
+    def mongoDeleteOneRecord(self, collectionTable: str, dictQuery: dict):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.delete_one(dictQuery)
 
-    def mongoDeleteManyRecords(self, collectionTable, dictQuery):
+    def mongoDeleteManyRecords(self, collectionTable: str, dictQuery: dict):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.delete_many(dictQuery)
 
-    def mongoUpdateOneRecord(self, collectionTable, dictQuery, dictUpdate):
+    def mongoUpdateOneRecord(self, collectionTable: str, dictQuery: dict, dictUpdate: dict):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.update(dictQuery, dictUpdate)
 
-    def mongoUpdateManyRecords(self, collectionTable, dictQuery, dictUpdate):
+    def mongoUpdateManyRecords(self, collectionTable: str, dictQuery: dict, dictUpdate: dict):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.update_many(dictQuery, dictUpdate)

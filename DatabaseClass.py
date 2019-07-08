@@ -10,7 +10,7 @@ class DatabaseClass:
     #Used for creating a unique instance ID
     instanceSeedID=99
     
-    def __init__(self, description):
+    def __init__(self, description: str):
         DatabaseClass.instanceCount += 1
         DatabaseClass.instanceSeedID = random.randint(DatabaseClass.instanceSeedID+1,
                                                       DatabaseClass.instanceSeedID+100)
@@ -19,13 +19,13 @@ class DatabaseClass:
     def getDescription(self):
         return self.description
     
-    def setDescription(self, description):
+    def setDescription(self, description: str):
         self.description = description
 
     def getInstanceCount(self):
         return DatabaseClass.instanceCount
     
-    def __del__(self, description, instanceID):
+    def __del__(self, description: str, instanceID: int):
         print("Deleted - "+description+" InstanceID="+str(instanceID))
         DatabaseClass.instanceCount -= 1
 

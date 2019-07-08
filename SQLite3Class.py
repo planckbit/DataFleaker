@@ -8,7 +8,7 @@ from DatabaseClass import DatabaseClass
 class SQLite3Class(DatabaseClass):
     sqlite3DBInstanceCount = 0
 
-    def __init__(self, dataBaseFileLocation):
+    def __init__(self, dataBaseFileLocation: str):
         DatabaseClass.__init__(self, "SQLite3 Database")
         SQLite3Class.sqlite3DBInstanceCount += 1
         self.sqlite3InstanceID = DatabaseClass.instanceSeedID
@@ -18,7 +18,7 @@ class SQLite3Class(DatabaseClass):
         self.dbConnectorConnect = sqlite3.connect(self.dataBaseFileLocation)
         return self.dbConnectorConnect
 
-    def sqlite3ExecuteQuery(self, strSQL):
+    def sqlite3ExecuteQuery(self, strSQL: str):
         self.cursor = self.dbConnectorConnect.cursor()
         self.cursor.execute(strSQL)
         result = self.cursor.fetchall()
