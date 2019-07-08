@@ -4,8 +4,10 @@
 #MIT License
 #Copyright (c) 2019 PlanckBit
 
+import os
 from MySQLClass import MySQLClass
 from MongoDBClass import MongoDBClass
+from SQLite3Class import SQLite3Class
 
 ##################MySQL Database Testing##########################
 #Create mySQLDB Object.
@@ -103,3 +105,14 @@ mongoDB.printMongoShowDatabases()
 mongoDBList = mongoDB.getMongoShowDatabases()
 for dbs in mongoDBList:
     print(dbs)
+
+
+##################SQLite3 Database Testing##########################
+#Create SQLite3 Object.
+sqlite3DBFileLocation = os.path.expanduser("~/.config/google-chrome/Default/Cookies")
+sqlite3DB = SQLite3Class(sqlite3DBFileLocation);
+sqlite3DB.sqlite3ConnectDataBase()
+sqlStr = "SELECT host_key, name, value, encrypted_value FROM cookies"
+sqlite3Result = sqlite3DB.sqlite3ExecuteQuery(sqlStr)
+for dbRows in sqlite3Result:
+    print(dbRows)
