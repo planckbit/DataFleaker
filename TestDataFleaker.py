@@ -10,46 +10,72 @@ from MongoDBClass import MongoDBClass
 ##################MySQL Database Testing##########################
 #Create mySQLDB Object.
 mySqlDB = MySQLClass("localhost","root","");
+
 #Select a DB and connect to it.
 mySqlDB.mysqlConnectDataBase("mysql")
+
 #Print mysqlDB Description
 print(mySqlDB.getDescription())
+
 #Print Total DB count regardless of type of DB
 print("Total DB Count="+str(mySqlDB.getInstanceCount()))
+
+#List all MySQL Databases
 mySqlDB.getMySqlShowDatabases()
 
-if( mySqlDB.mysqlCreateDataBase("DataFleaker") ):
-    print("SUCCESS CREATING DB")
-else:
-    print("NO SUCCESS")
-
+#List all the tables in mysql DB
 result = mySqlDB.mysqlExecuteQuery("SHOW TABLES;")
 for tables in result:
     print(tables[0])
 print("result size = "+str(result.__len__()))
 
+#Connect to new DB and show tables for it.
 mySqlDB.mysqlConnectDataBase("phpmyadmin")
 result = mySqlDB.mysqlExecuteQuery("SHOW TABLES;")
 for tables in result:
     print(tables[0])
 print("result size = "+str(result.__len__()))
 
+#Create database DataFleaker if it don't exist
+if( mySqlDB.mysqlCreateDataBase("DataFleaker") ):
+    print("SUCCESS CREATING DB")
+else:
+    print("NO SUCCESS. DB Already Exist")
+
+
 ##################Mongo Database Testing##########################
 #Create mongoDB Object
 mongoDB = MongoDBClass("mongodb://localhost:27017")
-
-#Create mongo Database named TestingDB
+#Create mongo Database named TestingDB.
 mongoDatabase = mongoDB.mongoConnectDataBase("TestingDB")
-mongoTable = mongoDatabase["NAMES"]
-mongoRecord = {"name": "PlanckBit", "address": "Florida"}
-mongoTableRet= mongoTable.insert_one(mongoRecord)
-print(str(mongoTableRet))
+
+#Insert one mongo Record Into Database TestingDB, collection Employee
+dictRecord = {"fname": "Planck", "address": "Florida"}
+mongoResult = mongoDB.mongoInsertOneRecord("Employee", dictRecord)
+print(mongoResult)
+
+#Insert one record by getting mongoTable reference
+#mongoTable = mongoDatabase["Employee"]
+#mongoRecord = {"fname": "Planck-2", "address": "Florida-2"}
+#mongoTableRet= mongoTable.insert_one(mongoRecord)
+#print(str(mongoTableRet))
+#print(mongoTableRet.inserted_id)
+
+#Insert list of records into Database TestingDB, collection Employee
+listRecords = [{"fname": "Mercury", "address": "1st"},
+               {"fname": "Venus", "address": "2nd"},
+               {"fname": "Earth", "address": "3rd"},
+               {"fname": "Mars", "address": "4th"},
+               {"fname": "Jupiter", "address": "5th"}]
+mongoResult = mongoDB.mongoInsertManyRecords("Employee", listRecords)
+print(mongoResult)
+
 
 #Get Mongo DB List.
 mongoDB.getMongoShowDatabases()
 
 #Drop Mongo DB
-mongoDB.mongoDropDataBase("TestingDB")
+#mongoDB.mongoDropDataBase("TestingDB")
 
 #Get Mongo DB List.
 mongoDB.getMongoShowDatabases()
