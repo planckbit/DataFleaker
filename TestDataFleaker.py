@@ -79,7 +79,17 @@ mongoResult = mongoDB.mongoFindAll("Employee")
 for dbRows in mongoResult:
     print(dbRows)
 
-mongoResult = mongoDB.mongoFindAllSpecificFields("Employee", { "_id": 0, "fname": 1, "address": 1})
+specificFields = { "_id": 0, "fname": 1, "address": 1}
+mongoResult = mongoDB.mongoFindAllSpecificFields("Employee", specificFields)
+for dbRows in mongoResult:
+    print(dbRows)
+
+filterQuery = { "fname": "Mars"}
+mongoResult =  mongoDB.mongoFindAllFilter("Employee", filterQuery)
+for dbRows in mongoResult:
+    print(dbRows)
+
+mongoResult = mongoDB.mongoFindAllSpecificFieldsFilter("Employee", filterQuery, specificFields)
 for dbRows in mongoResult:
     print(dbRows)
 
