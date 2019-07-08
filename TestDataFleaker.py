@@ -79,6 +79,10 @@ mongoResult = mongoDB.mongoFindAll("Employee")
 for dbRows in mongoResult:
     print(dbRows)
 
+mongoResult = mongoDB.mongoFindAllSpecificFields("Employee", { "_id": 0, "fname": 1, "address": 1})
+for dbRows in mongoResult:
+    print(dbRows)
+
 #Print Mongo Database list.
 mongoDB.printMongoShowDatabases()
 

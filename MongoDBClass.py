@@ -42,6 +42,11 @@ class MongoDBClass(DatabaseClass):
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find()
 
+    def mongoFindAllSpecificFields(self, collectionTable, dictFields):
+        useDB = self.client[self.databaseName]
+        useCollectionTable = useDB[collectionTable]
+        return useCollectionTable.find({}, dictFields)
+
     def mongoGetCurrentDataBaseSet(self):
         return self.databaseName
 
