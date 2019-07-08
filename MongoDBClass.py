@@ -32,30 +32,35 @@ class MongoDBClass(DatabaseClass):
     def mongoDropDataBase(self, databaseName):
         return self.client.drop_database(databaseName)
 
+    def mongoDropCollectionTable(self, collectionTable):
+        useDB = self.client[self.databaseName]
+        useCollectionTable = useDB[collectionTable]
+        return useCollectionTable.drop()
+
     def mongoFindOne(self, collectionTable):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find_one()
 
-    def mongoFindAll(self, collectionTable):
+    def mongoFindAll(self, collectionTable, limit=0):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
-        return useCollectionTable.find()
+        return useCollectionTable.find().limit(limit)
 
-    def mongoFindAllSpecificFields(self, collectionTable, dictFields):
+    def mongoFindAllSpecificFields(self, collectionTable, dictFields, limit=0):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
-        return useCollectionTable.find({}, dictFields)
+        return useCollectionTable.find({}, dictFields).limit(limit)
 
-    def mongoFindAllFilter(self, collectionTable, dictQuery):
+    def mongoFindAllFilter(self, collectionTable, dictQuery, limit=0):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
-        return useCollectionTable.find(dictQuery)
+        return useCollectionTable.find(dictQuery).limit(limit)
 
-    def mongoFindAllSpecificFieldsFilter(self, collectionTable, dictQuery, dictFields):
+    def mongoFindAllSpecificFieldsFilter(self, collectionTable, dictQuery, dictFields, limit=0):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
-        return useCollectionTable.find(dictQuery, dictFields)
+        return useCollectionTable.find(dictQuery, dictFields).limit(limit)
 
     def mongoDeleteOneRecord(self, collectionTable, dictQuery):
         useDB = self.client[self.databaseName]
@@ -66,6 +71,16 @@ class MongoDBClass(DatabaseClass):
         useDB = self.client[self.databaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.delete_many(dictQuery)
+
+    def mongoUpdateOneRecord(self, collectionTable, dictQuery, dictUpdate):
+        useDB = self.client[self.databaseName]
+        useCollectionTable = useDB[collectionTable]
+        return useCollectionTable.update(dictQuery, dictUpdate)
+
+    def mongoUpdateManyRecords(self, collectionTable, dictQuery, dictUpdate):
+        useDB = self.client[self.databaseName]
+        useCollectionTable = useDB[collectionTable]
+        return useCollectionTable.update_many(dictQuery, dictUpdate)
 
     def mongoGetCurrentDataBaseSet(self):
         return self.databaseName

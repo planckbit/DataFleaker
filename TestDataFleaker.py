@@ -54,11 +54,17 @@ mongoDB = MongoDBClass(mongoServerAddress)
 # in mongo.
 dbName = "PlanetsDB"
 collectionTableName = "Planets"
+collectionTableName2 = "Galaxies"
 mongoDatabase = mongoDB.mongoConnectDataBase(dbName)
 
 #Insert one mongo Record Into Database PlanetsDB, collection Planets
 dictRecord = {"planet": "Saturn", "location": "6th"}
 mongoResult = mongoDB.mongoInsertOneRecord(collectionTableName, dictRecord)
+print(mongoResult)
+
+#Insert one mongo Record into Database PlanetsDB, collection Galaxies
+dictRecord = {"galaxy": "Milky Way", "diameter": "105k light years"}
+mongoResult = mongoDB.mongoInsertOneRecord(collectionTableName2, dictRecord)
 print(mongoResult)
 
 #Insert one record by getting mongoTable reference
@@ -68,7 +74,7 @@ print(mongoResult)
 #print(str(mongoTableRet))
 #print(mongoTableRet.inserted_id)
 
-#Insert list of records into Database PlanetsDB, collection Employee
+#Insert list of records into Database PlanetsDB, collection Planets
 listRecords = [{"planet": "Mercury", "location": "1st"},
                {"planet": "Venus", "location": "2nd"},
                {"planet": "Earth", "location": "3rd"},
@@ -114,14 +120,19 @@ deleteOneRecordQuery = {"location": "3rd"}
 mongResult = mongoDB.mongoDeleteOneRecord(collectionTableName, deleteOneRecordQuery)
 print(mongoResult)
 
-#Delete many records starting with planet name letter M
+#Delete many records starting with planet name letter 'M'
 deleteManyQuery = {"planet": {"$regex": "^M"}}
 mongoResult = mongoDB.mongoDeleteManyRecords(collectionTableName, deleteManyQuery)
 print(mongoResult.deleted_count)
 
-mongoResult = mongoDB.mongoFindAll(collectionTableName)
+#Test Limit
+mongoResult = mongoDB.mongoFindAll(collectionTableName,5)
 for dbRows in mongoResult:
     print(dbRows)
+
+#Drop collectionTableName2 - Galaxies
+mongoResult = mongoDB.mongoDropCollectionTable(collectionTableName2)
+print(mongoResult)
 
 
 ##################SQLite3 Database Testing##########################
