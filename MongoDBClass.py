@@ -32,11 +32,24 @@ class MongoDBClass(DatabaseClass):
     def mongoDropDataBase(self, databaseName):
         return self.client.drop_database(databaseName)
 
+    def mongoFindOne(self, collectionTable):
+        useDB = self.client[self.databaseName]
+        useCollectionTable = useDB[collectionTable]
+        return useCollectionTable.find_one()
+
+    def mongoFindAll(self, collectionTable):
+        useDB = self.client[self.databaseName]
+        useCollectionTable = useDB[collectionTable]
+        return useCollectionTable.find()
+
     def mongoGetCurrentDataBaseSet(self):
         return self.databaseName
 
-    def getMongoShowDatabases(self):
+    def printMongoShowDatabases(self):
         print(self.client.list_database_names())
+
+    def getMongoShowDatabases(self):
+        return self.client.list_database_names()
 
     def getMongoDBClassInstanceCount(self):
         return MongoDBClass.mongoDBInstanceCount

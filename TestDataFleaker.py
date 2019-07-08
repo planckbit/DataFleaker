@@ -47,6 +47,8 @@ else:
 #Create mongoDB Object
 mongoDB = MongoDBClass("mongodb://localhost:27017")
 #Create mongo Database named TestingDB.
+# One collection and record must be added before it appears
+# in mongo.
 mongoDatabase = mongoDB.mongoConnectDataBase("TestingDB")
 
 #Insert one mongo Record Into Database TestingDB, collection Employee
@@ -70,12 +72,20 @@ listRecords = [{"fname": "Mercury", "address": "1st"},
 mongoResult = mongoDB.mongoInsertManyRecords("Employee", listRecords)
 print(mongoResult)
 
+mongoResult = mongoDB.mongoFindOne("Employee")
+print(mongoResult)
 
-#Get Mongo DB List.
-mongoDB.getMongoShowDatabases()
+mongoResult = mongoDB.mongoFindAll("Employee")
+for dbRows in mongoResult:
+    print(dbRows)
+
+#Print Mongo Database list.
+mongoDB.printMongoShowDatabases()
 
 #Drop Mongo DB
 #mongoDB.mongoDropDataBase("TestingDB")
 
 #Get Mongo DB List.
-mongoDB.getMongoShowDatabases()
+mongoDBList = mongoDB.getMongoShowDatabases()
+for dbs in mongoDBList:
+    print(dbs)
