@@ -47,51 +47,54 @@ else:
 
 ##################Mongo Database Testing##########################
 #Create mongoDB Object
-mongoDB = MongoDBClass("mongodb://localhost:27017")
-#Create mongo Database named TestingDB.
+mongoServerAddress = "mongodb://localhost:27017"
+mongoDB = MongoDBClass(mongoServerAddress)
+#Create mongo Database named PlanetsDB.
 # One collection and record must be added before it appears
 # in mongo.
-mongoDatabase = mongoDB.mongoConnectDataBase("TestingDB")
+dbName = "PlanetsDB"
+collectionTableName = "Planets"
+mongoDatabase = mongoDB.mongoConnectDataBase(dbName)
 
-#Insert one mongo Record Into Database TestingDB, collection Employee
-dictRecord = {"fname": "Planck", "address": "Florida"}
-mongoResult = mongoDB.mongoInsertOneRecord("Employee", dictRecord)
+#Insert one mongo Record Into Database PlanetsDB, collection Planets
+dictRecord = {"planet": "Saturn", "location": "6th"}
+mongoResult = mongoDB.mongoInsertOneRecord(collectionTableName, dictRecord)
 print(mongoResult)
 
 #Insert one record by getting mongoTable reference
-#mongoTable = mongoDatabase["Employee"]
-#mongoRecord = {"fname": "Planck-2", "address": "Florida-2"}
+#mongoTable = mongoDatabase[collectionTableName]
+#mongoRecord = {"planet": "Saturn", "location": "6th"}
 #mongoTableRet= mongoTable.insert_one(mongoRecord)
 #print(str(mongoTableRet))
 #print(mongoTableRet.inserted_id)
 
-#Insert list of records into Database TestingDB, collection Employee
-listRecords = [{"fname": "Mercury", "address": "1st"},
-               {"fname": "Venus", "address": "2nd"},
-               {"fname": "Earth", "address": "3rd"},
-               {"fname": "Mars", "address": "4th"},
-               {"fname": "Jupiter", "address": "5th"}]
-mongoResult = mongoDB.mongoInsertManyRecords("Employee", listRecords)
+#Insert list of records into Database PlanetsDB, collection Employee
+listRecords = [{"planet": "Mercury", "location": "1st"},
+               {"planet": "Venus", "location": "2nd"},
+               {"planet": "Earth", "location": "3rd"},
+               {"planet": "Mars", "location": "4th"},
+               {"planet": "Jupiter", "location": "5th"}]
+mongoResult = mongoDB.mongoInsertManyRecords(collectionTableName, listRecords)
 print(mongoResult)
 
-mongoResult = mongoDB.mongoFindOne("Employee")
+mongoResult = mongoDB.mongoFindOne(collectionTableName)
 print(mongoResult)
 
-mongoResult = mongoDB.mongoFindAll("Employee")
+mongoResult = mongoDB.mongoFindAll(collectionTableName)
 for dbRows in mongoResult:
     print(dbRows)
 
-specificFields = { "_id": 0, "fname": 1, "address": 1}
-mongoResult = mongoDB.mongoFindAllSpecificFields("Employee", specificFields)
+specificFields = { "_id": 0, "planet": 1, "location": 1}
+mongoResult = mongoDB.mongoFindAllSpecificFields(collectionTableName, specificFields)
 for dbRows in mongoResult:
     print(dbRows)
 
-filterQuery = { "fname": "Mars"}
-mongoResult =  mongoDB.mongoFindAllFilter("Employee", filterQuery)
+filterQuery = { "planet": "Mars"}
+mongoResult =  mongoDB.mongoFindAllFilter(collectionTableName, filterQuery)
 for dbRows in mongoResult:
     print(dbRows)
 
-mongoResult = mongoDB.mongoFindAllSpecificFieldsFilter("Employee", filterQuery, specificFields)
+mongoResult = mongoDB.mongoFindAllSpecificFieldsFilter(collectionTableName, filterQuery, specificFields)
 for dbRows in mongoResult:
     print(dbRows)
 
@@ -99,15 +102,30 @@ for dbRows in mongoResult:
 mongoDB.printMongoShowDatabases()
 
 #Drop Mongo DB
-#mongoDB.mongoDropDataBase("TestingDB")
+#mongoDB.mongoDropDataBase(dbName)
 
 #Get Mongo DB List.
 mongoDBList = mongoDB.getMongoShowDatabases()
 for dbs in mongoDBList:
     print(dbs)
 
+#Delete One record
+deleteOneRecordQuery = {"location": "3rd"}
+mongResult = mongoDB.mongoDeleteOneRecord(collectionTableName, deleteOneRecordQuery)
+print(mongoResult)
+
+#Delete many records starting with planet name letter M
+deleteManyQuery = {"planet": {"$regex": "^M"}}
+mongoResult = mongoDB.mongoDeleteManyRecords(collectionTableName, deleteManyQuery)
+print(mongoResult.deleted_count)
+
+mongoResult = mongoDB.mongoFindAll(collectionTableName)
+for dbRows in mongoResult:
+    print(dbRows)
+
 
 ##################SQLite3 Database Testing##########################
+'''
 #Create SQLite3 Object.
 sqlite3DBFileLocation = os.path.expanduser("~/.config/google-chrome/Default/Cookies")
 sqlite3DB = SQLite3Class(sqlite3DBFileLocation);
@@ -116,3 +134,4 @@ sqlStr = "SELECT host_key, name, value, encrypted_value FROM cookies"
 sqlite3Result = sqlite3DB.sqlite3ExecuteQuery(sqlStr)
 for dbRows in sqlite3Result:
     print(dbRows)
+'''

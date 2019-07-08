@@ -57,6 +57,16 @@ class MongoDBClass(DatabaseClass):
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find(dictQuery, dictFields)
 
+    def mongoDeleteOneRecord(self, collectionTable, dictQuery):
+        useDB = self.client[self.databaseName]
+        useCollectionTable = useDB[collectionTable]
+        return useCollectionTable.delete_one(dictQuery)
+
+    def mongoDeleteManyRecords(self, collectionTable, dictQuery):
+        useDB = self.client[self.databaseName]
+        useCollectionTable = useDB[collectionTable]
+        return useCollectionTable.delete_many(dictQuery)
+
     def mongoGetCurrentDataBaseSet(self):
         return self.databaseName
 
