@@ -178,7 +178,6 @@ dataFleaker = DataFleaker("First DataFleaker Mix Test",
                           mySqlDB,
                           mongoDB
                           )
-
 print(dataFleaker.getDescription())
 mongoResult = mongoDB.mongoFindAll(collectionTableName)
 

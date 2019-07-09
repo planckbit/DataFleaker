@@ -35,6 +35,13 @@ class DataFleakerTester:
     def df_Test_4_MySQL_Show_Databases(self):
         self.mySqlDB.getMySqlShowDatabases()
 
+    def df_Test_5_Mysql_ExecuteQuery_Show_Tables(self):
+        # List all the tables in mysql DB
+        result = self.mySqlDB.mysqlExecuteQuery("SHOW TABLES;")
+        for tables in result:
+            print(tables[0])
+        print("result size = " + str(result.__len__()))
+
 
 
 
