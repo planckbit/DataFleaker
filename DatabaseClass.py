@@ -28,8 +28,8 @@ class DatabaseClass:
     def getTempFileName(self):
         return self.tempFile.name
 
-    def writeTempFileName(self):
-        self.tempFile.write(b'Hello dude')
+    def writeTempFileName(self, inputBytes: b''):
+        self.tempFile.write(inputBytes)
 
     def readTempFileName(self):
         self.tempFile.seek(0)

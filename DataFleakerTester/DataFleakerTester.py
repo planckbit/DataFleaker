@@ -12,11 +12,12 @@ class DataFleakerTester:
     def __init__(self):
         print("Create")
 
-    def df_Test_1_CreateTempFile(self):
+    #Initial MySQL Test Cases
+    def df_Test_1_CreateTempFile(self, inputBytes: b''):
         dbClass = DatabaseClass("Test-1-CreateTempFile")
         dbClass.createTempFile()
         print(dbClass.getTempFileName())
-        dbClass.writeTempFileName()
+        dbClass.writeTempFileName(inputBytes)
         print(dbClass.readTempFileName().decode("utf-8"))
         dbClass.closeTempFile()
 
@@ -40,7 +41,33 @@ class DataFleakerTester:
         result = self.mySqlDB.mysqlExecuteQuery("SHOW TABLES;")
         for tables in result:
             print(tables[0])
-        print("result size = " + str(result.__len__()))
+        print("Total Tables Result Size = " + str(result.__len__()))
+
+    def df_Test_6_Mysql_ExecuteQuery_Basic_Query(self, sqlStr: str):
+        # List records retrieve from Database Query.
+        result = self.mySqlDB.mysqlExecuteQuery(sqlStr)
+        for rows in result:
+            print((rows[0]).decode("utf8"))
+        print("Total Rows Result Size = " + str(result.__len__()))
+
+    def df_Test_7_MysqlExecuteQuery_SwitchDBs(self,databaseName: str):
+        # Connect to new DB and show tables for it.
+        self.mySqlDB.mysqlConnectDataBase(databaseName)
+        result = self.mySqlDB.mysqlExecuteQuery("SHOW TABLES;")
+        for tables in result:
+            print(tables[0])
+        print("Table Total Length = " + str(result.__len__()))
+
+    def df_Test_8_MysqlCreateDataBaase(self, newDatabaseName: str):
+        # Create database DataFleaker if it don't exist
+        if (self.mySqlDB.mysqlCreateDataBase(newDatabaseName)):
+            print("SUCCESS CREATING DB")
+        else:
+            print("NO SUCCESS. DB Already Exist")
+
+    #Initial MongoDB Test Cases
+
+
 
 
 
