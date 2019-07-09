@@ -7,7 +7,6 @@ from MySQLClass import MySQLClass
 from MongoDBClass import MongoDBClass
 from SQLite3Class import SQLite3Class
 
-
 class DataFleaker:
     dataFleakerInstanceCount = 0
 
@@ -52,6 +51,7 @@ class DataFleaker:
 
         #MongoDB Fleaker to MySQL DB
         if(self.mysqlClassObject.mysqlCreateDataBase(self.mongoDBObject.mongoGetCurrentDataBaseSet())):
+
             return True
         else:
             return False

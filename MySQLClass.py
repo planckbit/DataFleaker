@@ -2,7 +2,7 @@
 #MIT License
 #Copyright (c) 2019 PlanckBit
 
-import pymysql
+#import pymysql
 import mysql.connector
 from DatabaseClass import DatabaseClass
 
@@ -26,6 +26,7 @@ class MySQLClass(DatabaseClass):
                                                           password=self.passWord,
                                                           host=self.host,
                                                           database=self.databaseName)
+        return self.dbConnectorConnect.connection_id
 
     def mysqlCreateDataBase(self, databaseName: str):
         ret = True
@@ -41,6 +42,11 @@ class MySQLClass(DatabaseClass):
             ret = False
         self.cursor.close()
         return ret
+
+    def mysqlCreateDatabaseTable(self, databaseTableName: str):
+        ret = True
+        self.cursor = self.dbConnectorConnect.cursor()
+        self.cursor.execute("")
 
     def mysqlExecuteQuery(self, strSQL: str):
         self.cursor = self.dbConnectorConnect.cursor()

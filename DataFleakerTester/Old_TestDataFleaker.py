@@ -1,8 +1,8 @@
-#!/usr/bin/python3
+# !/usr/bin/python3
 
-#Author: PlanckBit
-#MIT License
-#Copyright (c) 2019 PlanckBit
+# Author: PlanckBit
+# MIT License
+# Copyright (c) 2019 PlanckBit
 
 import os
 from MySQLClass import MySQLClass
