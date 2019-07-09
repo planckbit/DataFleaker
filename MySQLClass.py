@@ -71,3 +71,4 @@ class MySQLClass(DatabaseClass):
     def __del__(self):
         MySQLClass.mysqlDBInstanceCount -= 1
         DatabaseClass.__del__(self, self.description, self.mysqlInstanceID)
+

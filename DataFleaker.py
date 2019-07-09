@@ -51,7 +51,6 @@ class DataFleaker:
 
         #MongoDB Fleaker to MySQL DB
         if(self.mysqlClassObject.mysqlCreateDataBase(self.mongoDBObject.mongoGetCurrentDataBaseSet())):
-
             return True
         else:
             return False

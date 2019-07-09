@@ -97,3 +97,4 @@ class MongoDBClass(DatabaseClass):
     def __del__(self):
         MongoDBClass.mongoDBInstanceCount -= 1
         DatabaseClass.__del__(self, self.description, self.mongoDBInstanceID )
+

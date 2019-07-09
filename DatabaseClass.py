@@ -11,7 +11,6 @@ class DatabaseClass:
     #Used for creating a unique instance ID
     instanceSeedID=99
     #tempfile director location
-
     tempfile.tempdir = "/tmp/datafleaker"
     
     def __init__(self, description: str):
@@ -48,5 +47,3 @@ class DatabaseClass:
     def __del__(self, description: str = "None", instanceID: int = None):
         print("Deleted - "+description+" InstanceID="+str(instanceID))
         DatabaseClass.instanceCount -= 1
-
-

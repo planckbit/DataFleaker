@@ -24,4 +24,3 @@ class SQLite3Class(DatabaseClass):
         result = self.cursor.fetchall()
         self.cursor.close()
         return result
-
