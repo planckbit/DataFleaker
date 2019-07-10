@@ -6,12 +6,14 @@
 
 import inspect
 import os
+
 from DatabaseClass import DatabaseClass
 from MySQLClass import MySQLClass
 from MongoDBClass import MongoDBClass
 from SQLite3Class import SQLite3Class
+from DataFleakerClass import DataFleakerClass
 
-class DataFleakerTester:
+class DataFleakerTesterClass:
     inputBytes = b'Hello DataFleaker'
     mongoServerAddress = "mongodb://localhost:27017"
     dbName = "PlanetsDB"
@@ -122,7 +124,7 @@ class DataFleakerTester:
 
     def df_Test_1001_MongoDBInsertManyRecords(self, collectionTableName: str):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
-        mongoResult = self.mongoDBClass.mongoInsertManyRecords(collectionTableName, DataFleakerTester.listRecords)
+        mongoResult = self.mongoDBClass.mongoInsertManyRecords(collectionTableName, DataFleakerTesterClass.listRecords)
         print(mongoResult)
 
     def df_Test_1002_MongoDBFindOneRecord(self, collectionTableName: str):
@@ -138,13 +140,13 @@ class DataFleakerTester:
     def df_Test_1004_MongoDBFindAllSpecificFields(self, collectionTableName: str):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
         mongoResult = self.mongoDBClass.mongoFindAllSpecificFields(collectionTableName,
-                                                                   DataFleakerTester.specificFields)
+                                                                   DataFleakerTesterClass.specificFields)
         for dbRows in mongoResult:
             print(dbRows)
 
     def df_Test_1005_MongoDBFindAllFilter(self, collectionTableName: str):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
-        mongoResult = self.mongoDBClass.mongoFindAllFilter(collectionTableName, DataFleakerTester.filterQuery)
+        mongoResult = self.mongoDBClass.mongoFindAllFilter(collectionTableName, DataFleakerTesterClass.filterQuery)
         for dbRows in mongoResult:
             print(dbRows)
 
@@ -164,18 +166,18 @@ class DataFleakerTester:
 
     def df_Test_1009_MongoDeleteOneRecord(self, collectionTableName):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
-        mongoResult = self.mongoDBClass.mongoDeleteOneRecord(collectionTableName, DataFleakerTester.deleteOneRecordQuery)
+        mongoResult = self.mongoDBClass.mongoDeleteOneRecord(collectionTableName, DataFleakerTesterClass.deleteOneRecordQuery)
         print(mongoResult)
 
     def df_Test_1010_MongoDeleteManyRecords(self, collectionTableName):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
         # Delete many records starting with planet name letter 'M'
-        mongoResult = self.mongoDBClass.mongoDeleteManyRecords(collectionTableName, DataFleakerTester.deleteManyQuery)
+        mongoResult = self.mongoDBClass.mongoDeleteManyRecords(collectionTableName, DataFleakerTesterClass.deleteManyQuery)
         print(mongoResult.deleted_count)
 
     def df_Test_1011_MongoFindAllWithLimit(self, collectionTableName):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
-        mongoResult = self.mongoDBClass.mongoFindAll(collectionTableName, DataFleakerTester.findAllLimit)
+        mongoResult = self.mongoDBClass.mongoFindAll(collectionTableName, DataFleakerTesterClass.findAllLimit)
         for dbRows in mongoResult:
             print(dbRows)
 

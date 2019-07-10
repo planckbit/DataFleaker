@@ -7,7 +7,7 @@ from MySQLClass import MySQLClass
 from MongoDBClass import MongoDBClass
 from SQLite3Class import SQLite3Class
 
-class DataFleaker:
+class DataFleakerClass:
     dataFleakerInstanceCount = 0
 
     def __init__(self,
@@ -15,7 +15,7 @@ class DataFleaker:
                  mysqlClassObject: MySQLClass = None,
                  mongoDBObject: MongoDBClass = None,
                  sqlite3Object: SQLite3Class = None):
-        DataFleaker.dataFleakerInstanceCount += 1
+        DataFleakerClass.dataFleakerInstanceCount += 1
         self.description = description
         self.mysqlClassObject = mysqlClassObject
         self.mongoDBObject = mongoDBObject
@@ -56,7 +56,7 @@ class DataFleaker:
             return False
 
     def __del__(self):
-        DataFleaker.dataFleakerInstanceCount -= 1
+        DataFleakerClass.dataFleakerInstanceCount -= 1
 
 
 
