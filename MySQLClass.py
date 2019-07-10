@@ -1,8 +1,8 @@
-#Author: PlanckBit
-#MIT License
-#Copyright (c) 2019 PlanckBit
+# Author: PlanckBit
+# MIT License
+# Copyright (c) 2019 PlanckBit
 
-#import pymysql
+# import pymysql
 import mysql.connector
 from DatabaseClass import DatabaseClass
 

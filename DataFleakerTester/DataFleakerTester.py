@@ -1,4 +1,4 @@
-# !/usr/bin/python3
+#!/usr/bin/python3
 
 # Author: PlanckBit
 # MIT License
@@ -23,10 +23,13 @@ class DataFleakerTester:
                    {"planet": "Mars", "location": "4th"},
                    {"planet": "Jupiter", "location": "5th"}]
 
-    def __init__(self):
-        print("Create")
+    specificFields = {"_id": 0, "planet": 1, "location": 1}
+    filterQuery = {"planet": "Mars"}
 
-    #Initial MySQL Test Cases
+    def __init__(self):
+        print("Create DataFleakerTester Instance")
+
+    # Initial MySQL Test Cases
     def df_Test_1_CreateTempFile(self, inputBytes: b''):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
         dbClass = DatabaseClass("Test-1-CreateTempFile")
@@ -87,7 +90,7 @@ class DataFleakerTester:
         else:
             print("NO SUCCESS. DB Already Exist")
 
-    #Initial MongoDB Test Cases
+    # Initial MongoDB Test Cases
     def df_Test_1000_MongoDBCreateMongoDB(self,
                                            mongoServerAddress: str,
                                            dbName: str,
@@ -112,9 +115,9 @@ class DataFleakerTester:
         mongoResult = self.mongoDBClass.mongoInsertOneRecord(collectionTableName, dictRecord)
         print(mongoResult)
 
-    def df_Test_1001_MongoDBInsertManyRecords(self, collectionTableName: str, listRecords: str):
+    def df_Test_1001_MongoDBInsertManyRecords(self, collectionTableName: str):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
-        mongoResult = self.mongoDBClass.mongoInsertManyRecords(collectionTableName, listRecords)
+        mongoResult = self.mongoDBClass.mongoInsertManyRecords(collectionTableName, DataFleakerTester.listRecords)
         print(mongoResult)
 
     def df_Test_1002_MongoDBFindOneRecord(self, collectionTableName: str):
@@ -127,12 +130,27 @@ class DataFleakerTester:
         mongoResult = self.mongoDBClass.mongoFindAll(collectionTableName)
         print(mongoResult)
 
-    def df_Test_1004_MongoDB(self, collectionTableName: str):
+    def df_Test_1004_MongoDBFindAllSpecificFields(self, collectionTableName: str):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
-        specificFields = {"_id": 0, "planet": 1, "location": 1}
-        mongoResult = self.mongoDBClass.mongoFindAllSpecificFields(collectionTableName, specificFields)
+        mongoResult = self.mongoDBClass.mongoFindAllSpecificFields(collectionTableName,
+                                                                   DataFleakerTester.specificFields)
         for dbRows in mongoResult:
             print(dbRows)
+
+    def df_Test_1005_MongoDBFindAllFilter(self, collectionTableName: str):
+        DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
+        mongoResult = self.mongoDBClass.mongoFindAllFilter(collectionTableName, DataFleakerTester.filterQuery)
+        for dbRows in mongoResult:
+            print(dbRows)
+
+    def df_Test_1005_MongoDBFindAllFilter(self, collectionTableName: str):
+            mongoResult = self.mongoDBClass.mongoFindAllSpecificFieldsFilter(collectionTableName,
+                                                                             DataFleakerTester.filterQuery,
+                                                                             DataFleakerTester.specificFields)
+            for dbRows in mongoResult:
+                print(dbRows)
+
+
 
 
 

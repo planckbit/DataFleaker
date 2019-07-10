@@ -1,16 +1,16 @@
-#Author: PlanckBit
-#MIT License
-#Copyright (c) 2019 PlanckBit
+# Author: PlanckBit
+# MIT License
+# Copyright (c) 2019 PlanckBit
 
 import random
 import tempfile
 
 class DatabaseClass:
-    #Keep track of total instances.
+    # Keep track of total instances.
     instanceCount = 0
-    #Used for creating a unique instance ID
+    # Used for creating a unique instance ID
     instanceSeedID=99
-    #tempfile director location
+    # tempfile director location
     tempfile.tempdir = "/tmp/datafleaker"
     
     def __init__(self, description: str):
@@ -49,6 +49,6 @@ class DatabaseClass:
         print("Deleted - "+description+" InstanceID="+str(instanceID))
         DatabaseClass.instanceCount -= 1
 
-    #static method for logging purpose.
+    # static method for logging purpose.
     def printClassFunctionName(className: str, functionName: str):
         print("==============================>" + className + "." + functionName)

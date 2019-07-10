@@ -25,10 +25,11 @@ testDataFleaker.df_Test_1000_MongoDBCreateMongoDB(DataFleakerTester.mongoServerA
                                                   DataFleakerTester.collectionTableName,
                                                   DataFleakerTester.dictRecord)
 
-testDataFleaker.df_Test_1001_MongoDBInsertManyRecords(DataFleakerTester.collectionTableName, DataFleakerTester.listRecords)
+testDataFleaker.df_Test_1001_MongoDBInsertManyRecords(DataFleakerTester.collectionTableName)
 testDataFleaker.df_Test_1002_MongoDBFindOneRecord(DataFleakerTester.collectionTableName)
 testDataFleaker.df_Test_1003_MongoDBFindManyRecords(DataFleakerTester.collectionTableName)
-
+testDataFleaker.df_Test_1004_MongoDBFindAllSpecificFields(DataFleakerTester.collectionTableName)
+testDataFleaker.df_Test_1005_MongoDBFindAllFilter(DataFleakerTester.collectionTableName)
 
 
 
