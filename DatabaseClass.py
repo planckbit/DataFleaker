@@ -35,6 +35,7 @@ class DatabaseClass:
         self.tempFile.seek(0)
         return self.tempFile.read()
 
+
     def getDescription(self):
         return self.description
     
@@ -47,3 +48,7 @@ class DatabaseClass:
     def __del__(self, description: str = "None", instanceID: int = None):
         print("Deleted - "+description+" InstanceID="+str(instanceID))
         DatabaseClass.instanceCount -= 1
+
+    #static method for logging purpose.
+    def printClassFunctionName(className: str, functionName: str):
+        print("==============================>" + className + "." + functionName)
