@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
-#Author: PlanckBit
-#MIT License
-#Copyright (c) 2019 PlanckBit
+# Author: PlanckBit
+# MIT License
+# Copyright (c) 2019 PlanckBit
 
 from DataFleakerTester import DataFleakerTester
 
 # Basic temp file creation for fast csv exporting and importing.
+# will be used for converting one DB to Another.
 testDataFleaker = DataFleakerTester()
 testDataFleaker.df_Test_1_CreateTempFile(DataFleakerTester.inputBytes)
 
@@ -30,6 +31,19 @@ testDataFleaker.df_Test_1002_MongoDBFindOneRecord(DataFleakerTester.collectionTa
 testDataFleaker.df_Test_1003_MongoDBFindManyRecords(DataFleakerTester.collectionTableName)
 testDataFleaker.df_Test_1004_MongoDBFindAllSpecificFields(DataFleakerTester.collectionTableName)
 testDataFleaker.df_Test_1005_MongoDBFindAllFilter(DataFleakerTester.collectionTableName)
+testDataFleaker.df_Test_1006_PrintMongoShowDatabases()
+testDataFleaker.df_Test_1007_GetMongoShowDatabases()
+# Uncomment to drop DB.
+# testDataFleaker.df_Test_1008_MongoDropDatabase(DataFleakerTester.dbName)
+testDataFleaker.df_Test_1009_MongoDeleteOneRecord(DataFleakerTester.collectionTableName)
+testDataFleaker.df_Test_1010_MongoDeleteManyRecords(DataFleakerTester.collectionTableName)
+testDataFleaker.df_Test_1011_MongoFindAllWithLimit(DataFleakerTester.collectionTableName)
+
+# Basic Testing of SQLite3Class functionality
+testDataFleaker.df_Test_2000_SQLite3ConnectQuery()
+
+# DataFleaker Testing
+
 
 
 
