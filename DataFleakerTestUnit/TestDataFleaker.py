@@ -20,6 +20,11 @@ testDataFleaker.df_Test_6_Mysql_ExecuteQuery_Basic_Query("SELECT * FROM user WHE
 testDataFleaker.df_Test_7_MysqlExecuteQuery_SwitchDBs("test")
 testDataFleaker.df_Test_8_MysqlCreateDataBaase("DataFleaker")
 
+# Basic MariaDBClass Testing
+testDataFleaker.df_Test_500_MariaDB_Connection("phpmyadmin")
+testDataFleaker.df_Test_501_MariaDB_Description_InstanceCount()
+testDataFleaker.df_Test_502_MariaDB_Show_Databases()
+
 # Basic Testing of MongoDBClass functionality
 testDataFleaker.df_Test_1000_MongoDBCreateMongoDB(DataFleakerTesterClass.mongoServerAddress,
                                                   DataFleakerTesterClass.dbName,
@@ -39,11 +44,14 @@ testDataFleaker.df_Test_1009_MongoDeleteOneRecord(DataFleakerTesterClass.collect
 testDataFleaker.df_Test_1010_MongoDeleteManyRecords(DataFleakerTesterClass.collectionTableName)
 testDataFleaker.df_Test_1011_MongoFindAllWithLimit(DataFleakerTesterClass.collectionTableName)
 
+
 # Basic Testing of SQLite3Class functionality
 #testDataFleaker.df_Test_2000_SQLite3ConnectQuery()
 
 # Basic DataFleaker Testing.
-testDataFleaker.df_Test_3000_DataFleakerMongoToMySQL(DataFleakerTesterClass.collectionTableName)
+#testDataFleaker.df_Test_3000_DataFleakerMongoToMySQL(DataFleakerTesterClass.collectionTableName)
+
+
 
 
 

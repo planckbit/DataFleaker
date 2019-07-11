@@ -9,6 +9,7 @@ import os
 
 from DatabaseClass import DatabaseClass
 from MySQLClass import MySQLClass
+from MariaDBClass import MariaDBClass
 from MongoDBClass import MongoDBClass
 from SQLite3Class import SQLite3Class
 from DataFleakerClass import DataFleakerClass
@@ -31,7 +32,7 @@ class DataFleakerTesterClass:
     filterQuery = {"planet": "Mars"}
     deleteOneRecordQuery = {"location": "3rd"}
     deleteManyQuery = {"planet": {"$regex": "^M"}}
-    findAllLimit = 5;
+    findAllLimit = 5
 
     def __init__(self):
         print("Create DataFleakerTester Instance")
@@ -49,7 +50,7 @@ class DataFleakerTesterClass:
     def df_Test_2_MySQL_Connection(self, databaseName: str):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
         # Create mySQLDB Object.
-        self.mySqlDB = MySQLClass("localhost", "root", "");
+        self.mySqlDB = MySQLClass("localhost", "root", "")
         # Select a DB and connect to it.
         print(self.mySqlDB.mysqlConnectDataBase(databaseName))
 
@@ -96,6 +97,25 @@ class DataFleakerTesterClass:
             print("SUCCESS CREATING DB")
         else:
             print("NO SUCCESS. DB Already Exist")
+
+    # Initial MariaDB Test Cases
+    def df_Test_500_MariaDB_Connection(self, databaseName: str):
+        DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
+        # Create mariaDB Object.
+        self.mariaDB = MariaDBClass("localhost", "root", "")
+        # Select a DB and connect to it.
+        print(self.mariaDB.mysqlConnectDataBase(databaseName))
+
+    def df_Test_501_MariaDB_Description_InstanceCount(self):
+        DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
+        # Print mariaDB Description
+        print(self.mariaDB.getDescription())
+        # Print Total DB count regardless of type of DB
+        print("Total DB Count=" + str(self.mariaDB.getInstanceCount()))
+
+    def df_Test_502_MariaDB_Show_Databases(self):
+        DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
+        self.mariaDB.getMySqlShowDatabases()
 
     # Initial MongoDB Test Cases
     def df_Test_1000_MongoDBCreateMongoDB(self,
@@ -193,7 +213,7 @@ class DataFleakerTesterClass:
         for dbRows in sqlite3Result:
             print(dbRows)
 
-    # Initial DataFleakerClass Testing
+    # Initial DataFleakerClass Testing.
     def df_Test_3000_DataFleakerMongoToMySQL(self, collectionTable):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
         self.dataFleakerClass = DataFleakerClass("DataFleaker Instance")

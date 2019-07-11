@@ -43,10 +43,13 @@ class MySQLClass(DatabaseClass):
         self.cursor.close()
         return ret
 
-    def mysqlCreateDatabaseTable(self, databaseTableName: str):
-        ret = True
+    def mysqlCreateDatabaseTable(self, databaseTableName: str, columnNames: str = ""):
         self.cursor = self.dbConnectorConnect.cursor()
-        self.cursor.execute("CREATE TABLE "+databaseTableName+" (json_record JSON);")
+        self.cursor.execute("CREATE TABLE "+databaseTableName+" "+columnNames)
+
+    def mySQLCreateDatabaseTableJsonType(self, databaseTableName: str):
+        self.cursor = self.dbConnectorConnect.cursor()
+        self.cursor.execute("CREATE TABLE " + databaseTableName + " (id INT NOT NULL AUTO_INCREMENT,json_record JSON, PRIMARY KEY (id));")
 
     def mysqlExecuteQuery(self, strSQL: str):
         self.cursor = self.dbConnectorConnect.cursor()
@@ -63,6 +66,7 @@ class MySQLClass(DatabaseClass):
         self.dbConnectorConnect.commit()
         self.cursor.close()
 
+    #Todo:Test this out. Need better version
     def mysqlExecuteInsertUsingValues(self, strSQL: str, strValues: str):
         self.cursor = self.dbConnectorConnect.cursor()
         #print(strSQL)

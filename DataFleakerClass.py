@@ -56,7 +56,7 @@ class DataFleakerClass:
         #Create Table
         result = ""
         try:
-            self.mysqlClassObject.mysqlCreateDatabaseTable(collectionTable)
+            self.mysqlClassObject.mySQLCreateDatabaseTableJsonType(collectionTable)
         except:
             print("Exception for Table Creation.")
 
