@@ -40,10 +40,10 @@ testDataFleaker.df_Test_1010_MongoDeleteManyRecords(DataFleakerTesterClass.colle
 testDataFleaker.df_Test_1011_MongoFindAllWithLimit(DataFleakerTesterClass.collectionTableName)
 
 # Basic Testing of SQLite3Class functionality
-testDataFleaker.df_Test_2000_SQLite3ConnectQuery()
+#testDataFleaker.df_Test_2000_SQLite3ConnectQuery()
 
-# DataFleaker Testing
-
+# Basic DataFleaker Testing.
+testDataFleaker.df_Test_3000_DataFleakerMongoToMySQL(DataFleakerTesterClass.collectionTableName)
 
 
 

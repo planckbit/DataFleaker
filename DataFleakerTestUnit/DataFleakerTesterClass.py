@@ -183,6 +183,7 @@ class DataFleakerTesterClass:
 
     # Initial SQLite3Class Test Cases
     def df_Test_2000_SQLite3ConnectQuery(self):
+        DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
         # Create SQLite3 Object.
         sqlite3DBFileLocation = os.path.expanduser("~/.config/google-chrome/Default/Cookies")
         sqlite3DB = SQLite3Class(sqlite3DBFileLocation)
@@ -192,6 +193,14 @@ class DataFleakerTesterClass:
         for dbRows in sqlite3Result:
             print(dbRows)
 
+    # Initial DataFleakerClass Testing
+    def df_Test_3000_DataFleakerMongoToMySQL(self, collectionTable):
+        DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
+        self.dataFleakerClass = DataFleakerClass("DataFleaker Instance")
+        self.dataFleakerClass.setMongoClassObjectToFleaker(self.mongoDBClass)
+        self.dataFleakerClass.setMySQLClassObjectToFleaker(self.mySqlDB)
+        return self.dataFleakerClass.dataFleakerMongoToMySQL(collectionTable,
+                                                             self.mongoDBClass.mongoFindAll(DataFleakerTesterClass.collectionTableName))
 
 
 

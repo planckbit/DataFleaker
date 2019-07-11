@@ -41,7 +41,7 @@ class DataFleakerClass:
     def setSQLite3ClassClassObjectToFleaker(self, sqlite3Object: SQLite3Class = None):
         self.sqlite3Object = sqlite3Object
 
-    def dataFleakerMongoToMySQL(self, mongoDBCursor: pymongo.cursor.Cursor):
+    def dataFleakerMongoToMySQL(self, collectionTable: str, mongoDBCursor: pymongo.cursor.Cursor):
         if self.mongoDBObject == None:
             print("No Valid MongoDBClass Object")
             return False
@@ -49,11 +49,22 @@ class DataFleakerClass:
             print("No Valid MySQLClass Object")
             return False
 
-        #MongoDB Fleaker to MySQL DB
-        if(self.mysqlClassObject.mysqlCreateDataBase(self.mongoDBObject.mongoGetCurrentDataBaseSet())):
-            return True
-        else:
-            return False
+        #Create DB
+        self.mysqlClassObject.mysqlCreateDataBase(self.mongoDBObject.mongoGetCurrentDataBaseSet())
+        #Connect to DB
+        self.mysqlClassObject.mysqlConnectDataBase(self.mongoDBObject.mongoGetCurrentDataBaseSet())
+        #Create Table
+        result = ""
+        try:
+            self.mysqlClassObject.mysqlCreateDatabaseTable(collectionTable)
+        except:
+            print("Exception for Table Creation.")
+
+        #Insert mongoDB records into JSON type field in MySQL
+        for records in mongoDBCursor:
+            strQuery = "INSERT INTO "+collectionTable+"(json_record) VALUES(\""+str(records)+"\")"
+            #print(strQuery)
+            self.mysqlClassObject.mysqlExecuteInsert(strQuery)
 
     def __del__(self):
         DataFleakerClass.dataFleakerInstanceCount -= 1

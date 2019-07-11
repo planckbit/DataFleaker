@@ -46,7 +46,7 @@ class MySQLClass(DatabaseClass):
     def mysqlCreateDatabaseTable(self, databaseTableName: str):
         ret = True
         self.cursor = self.dbConnectorConnect.cursor()
-        self.cursor.execute("")
+        self.cursor.execute("CREATE TABLE "+databaseTableName+" (json_record JSON);")
 
     def mysqlExecuteQuery(self, strSQL: str):
         self.cursor = self.dbConnectorConnect.cursor()
@@ -54,6 +54,22 @@ class MySQLClass(DatabaseClass):
         result = self.cursor.fetchall()
         self.cursor.close()
         return result
+
+    def mysqlExecuteInsert(self, strSQL: str):
+        self.cursor = self.dbConnectorConnect.cursor()
+        # print(strSQL)
+        # print(strValues)
+        self.cursor.execute(strSQL)
+        self.dbConnectorConnect.commit()
+        self.cursor.close()
+
+    def mysqlExecuteInsertUsingValues(self, strSQL: str, strValues: str):
+        self.cursor = self.dbConnectorConnect.cursor()
+        #print(strSQL)
+        #print(strValues)
+        self.cursor.execute(strSQL, strValues)
+        self.dbConnectorConnect.commit()
+        self.cursor.close()
 
     def getMySqlShowDatabases(self):
         self.cursor = self.dbConnectorConnect.cursor()
