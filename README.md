@@ -33,7 +33,7 @@ capabilties for query and searching.
       in MySQL/MariaDB. Note this is early work and the current conversion is a very basic SQL insert 
       operation, not optimized for speed and different DB engine types. 
       
- ## Tested with
+ ## Tested with the following below.
     * python3
     * XAMPP 7.3.6 - Running 10.3.16-MariaDB
     * MongoDB - Running v4.0.10
@@ -43,8 +43,16 @@ capabilties for query and searching.
         x86_64 x86_64 x86_64 GNU/Linux
     
 ## Get Started:
-   Execute: examples/ConvertMongoDBResult_To_MySQLDB.py
+   ~/Development/python/workrooot$ git clone git@github.com:planckbit/DataFleaker.git
+   ~/Development/python/workrooot$ cd DataFleaker
+   ~/Development/python/workrooot/DataFleaker$ PYTHONPATH=~/Development/python/workrooot/DataFleaker
+   ~/Development/python/workrooot/DataFleaker$ export PYTHONPATH
+   ~/Development/python/workrooot/DataFleaker$ cd examples/
+   ~/Development/python/workrooot/DataFleaker/examples$ chmod 755 ConvertMongoDBResult_To_MySqlDB.py
+   ~/Development/python/workrooot/DataFleaker/examples$ ./ConvertMongoDBResult_To_MySqlDB.py
    
+   Example Code executing:
+     
     from DatabaseClass import DatabaseClass
     from MySQLClass import MySQLClass
     from MariaDBClass import MariaDBClass
@@ -96,7 +104,7 @@ capabilties for query and searching.
 </p>
 
 ## Final Thoughts
-    If you have any questions or ideas that you might like to see implemented in this prototype uou can 
-    email me at planckbit@att.net. Enjoy. Thanks.
+    If you have any questions or ideas that you might like to see implemented in this prototype you can 
+    email me at planckbit@att.net. Thanks.
 
 
