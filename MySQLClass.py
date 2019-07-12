@@ -19,6 +19,11 @@ class MySQLClass(DatabaseClass):
         self.host = host
         self.userName = userName
         self.passWord = passWord
+
+    def mysqlConnect(self):
+        self.dbConnectorConnect = mysql.connector.connect(user=self.userName,
+                                                          password=self.passWord,
+                                                          host=self.host)
         
     def mysqlConnectDataBase(self, databaseName: str):
         self.databaseName = databaseName

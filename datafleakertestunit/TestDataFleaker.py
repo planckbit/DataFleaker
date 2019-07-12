@@ -49,7 +49,8 @@ testDataFleaker.df_Test_1011_MongoFindAllWithLimit(DataFleakerTesterClass.collec
 #testDataFleaker.df_Test_2000_SQLite3ConnectQuery()
 
 # Basic DataFleaker Testing.
-#testDataFleaker.df_Test_3000_DataFleakerMongoToMySQL(DataFleakerTesterClass.collectionTableName)
+testDataFleaker.df_Test_3000_DataFleakerMongoToMySQL(DataFleakerTesterClass.collectionTableName)
+
 
 
 
