@@ -8,8 +8,8 @@
 ## Prototype Development Brief
 This is currently a prototype in development that I started developing due to my interest in determing the flexibility
 of converting different results sets from specific DB management systems to different DB management systems on the fly
-such as NoSQL and Relational based databases. The concept is nothing new but is worth exploring the capabilties and 
-feasbilties involved which is what this prototype intends to capture.
+such as NoSQL and Relational based databases. The concept is nothing new in terms of ETL but is worth exploring the 
+capabilties and feasbilties involved which is what this prototype intends to capture.
 
 ## Description
 The purpose of DataFleaker is to convert specific database result sets to other database result sets for different
