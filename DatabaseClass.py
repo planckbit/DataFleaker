@@ -35,7 +35,6 @@ class DatabaseClass:
         self.tempFile.seek(0)
         return self.tempFile.read()
 
-
     def getDescription(self):
         return self.description
     
