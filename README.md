@@ -17,9 +17,9 @@ database management systems. This allows developers the flexibility to use the a
 for query,Replication, etc)  provided by different database management systems that other database management systems 
 may lack. For example, converting a result set return by a NoSQL DB such as
 Mongo which is in JSON format directly into a MySQL/MariaDB Database on the fly. Then using SQL and built in JSON api's
-in MySQL/MariaDB to query this new result set from the newly created DB. Or converting a MySQL/MariaDB result set to a Mongo DB 
-result set and using  the capabilities of the Mongo DB management system such as the built in JavaScript capabilties 
-for query and searching. 
+in MySQL/MariaDB to query this new result set from the newly created DB. Or converting a MySQL/MariaDB result set to a 
+Mongo DB result set and using  the capabilities of the Mongo DB management system such as the built in JavaScript 
+capabilties for query and searching. 
 
 ## Early Prototype Features
     * Current support for creating specific Class Objects for MongoDB, MySQLDB, MariaDB and SQLite3.
@@ -27,11 +27,11 @@ for query and searching.
       converted on the fly through one of the DataFleakers member APIs.
     * Current support for connecting to MongoDB, MySqlDB, MariaDB, and SQLite3 through the object instances.
     * Current support for executing basic queries(DB Creation, Tables/Collections, and simple queries)
-      on MongoDB, MySQLDB, MariaDB, and SQLite3. Note these are early implemenations so there is no error checks for
-       specific conditions etc... In other words this is no where near production code.
-    * Current support for converting a MongoDB result set(JSON format) to a New DB with JSON Type field in MySQL/MariaDB.
-      Note this is early work and the current conversion is a very basic SQL insert operation, not optimized for speed and
-      different DB engine types. 
+      on MongoDB, MySQLDB, MariaDB, and SQLite3. Note these are early implemenations so there is no 
+      error checks for specific conditions etc... In other words this is no where near production code.
+    * Current support for converting a MongoDB result set(JSON format) to a New DB with JSON Type field
+      in MySQL/MariaDB. Note this is early work and the current conversion is a very basic SQL insert 
+      operation, not optimized for speed and different DB engine types. 
       
  ## Tested with
     * python3
@@ -81,7 +81,7 @@ for query and searching.
     dataFleakerClassInstance.setMySQLClassObjectToFleaker(mySqlDBClassInstance)
     # Perform the magic, convert MongoDB results to a MySQL DB.
     dataFleakerClassInstance.dataFleakerMongoToMySQL(collectionTableName,
-                                                 mongoDBClassInstance.mongoFindAll(collectionTableName))
+                                                     mongoDBClassInstance.mongoFindAll(collectionTableName))
 
     # Drop the Database
     #mongoDBClassInstance.mongoDropDataBase(dbName)
@@ -95,9 +95,8 @@ for query and searching.
     <img width="800" height="500" src="images/ConvertMongoDBResult_To_MySQLDB.png">
 </p>
 
-
 ## Final Thoughts
-    If you have any questions or ideas that you might like to see implemented you can email me at planckbit@att.net.
-    Enjoy. Thanks.
+    If you have any questions or ideas that you might like to see implemented in this prototype uou can 
+    email me at planckbit@att.net. Enjoy. Thanks.
 
 

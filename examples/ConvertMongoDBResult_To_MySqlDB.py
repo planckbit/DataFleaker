@@ -4,8 +4,6 @@
 # MIT License
 # Copyright (c) 2019 PlanckBit
 
-#
-
 from DatabaseClass import DatabaseClass
 from MySQLClass import MySQLClass
 from MariaDBClass import MariaDBClass
@@ -44,6 +42,5 @@ dataFleakerClassInstance.setMySQLClassObjectToFleaker(mySqlDBClassInstance)
 dataFleakerClassInstance.dataFleakerMongoToMySQL(collectionTableName,
                                                  mongoDBClassInstance.mongoFindAll(collectionTableName))
 
-
-# Drop the Database
+# Drop the Database. Uncomment to start fresh.
 #mongoDBClassInstance.mongoDropDataBase(dbName)
