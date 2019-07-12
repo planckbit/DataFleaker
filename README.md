@@ -43,13 +43,13 @@ capabilties for query and searching.
         x86_64 x86_64 x86_64 GNU/Linux
     
 ## Get Started:
-    ~/Development/python/workrooot$ git clone git@github.com:planckbit/DataFleaker.git
-    ~/Development/python/workrooot$ cd DataFleaker
-    ~/Development/python/workrooot/DataFleaker$ PYTHONPATH=~/Development/python/workrooot/DataFleaker
-    ~/Development/python/workrooot/DataFleaker$ export PYTHONPATH
-    ~/Development/python/workrooot/DataFleaker$ cd examples/
-    ~/Development/python/workrooot/DataFleaker/examples$ chmod 755 ConvertMongoDBResult_To_MySqlDB.py
-    ~/Development/python/workrooot/DataFleaker/examples$ ./ConvertMongoDBResult_To_MySqlDB.py
+    ~/Development/python/workroot$ git clone git@github.com:planckbit/DataFleaker.git
+    ~/Development/python/workroot$ cd DataFleaker
+    ~/Development/python/workroot/DataFleaker$ PYTHONPATH=~/Development/python/workroot/DataFleaker
+    ~/Development/python/workroot/DataFleaker$ export PYTHONPATH
+    ~/Development/python/workroot/DataFleaker$ cd examples/
+    ~/Development/python/workroot/DataFleaker/examples$ chmod 755 ConvertMongoDBResult_To_MySqlDB.py
+    ~/Development/python/workroot/DataFleaker/examples$ ./ConvertMongoDBResult_To_MySqlDB.py
    
    Example Code executing:
      
