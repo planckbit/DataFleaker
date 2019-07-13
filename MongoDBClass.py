@@ -82,7 +82,7 @@ class MongoDBClass(DatabaseClass):
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.update_many(dictQuery, dictUpdate)
 
-    def mongoGetCurrentDataBaseSet(self):
+    def mongoGetCurrentDataBaseName(self):
         return self.databaseName
 
     def printMongoShowDatabases(self):

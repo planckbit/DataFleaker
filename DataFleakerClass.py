@@ -3,7 +3,7 @@
 # Copyright (c) 2019 PlanckBit
 
 import pymongo
-from MySQLClass import MySQLClass
+from MySQLClass import MySQLClass, MySQLEngineTypes
 from MongoDBClass import MongoDBClass
 from SQLite3Class import SQLite3Class
 
@@ -41,7 +41,9 @@ class DataFleakerClass:
     def setSQLite3ClassClassObjectToFleaker(self, sqlite3Object: SQLite3Class = None):
         self.sqlite3Object = sqlite3Object
 
-    def dataFleakerMongoToMySQL(self, collectionTable: str, mongoDBCursor: pymongo.cursor.Cursor):
+    def dataFleakerMongoToMySQL(self, collectionTable: str,
+                                mongoDBCursor: pymongo.cursor.Cursor,
+                                mysqlDBEngineType: str = MySQLEngineTypes.INNODB.value):
         if self.mongoDBObject == None:
             print("No Valid MongoDBClass Object")
             return False
@@ -50,15 +52,11 @@ class DataFleakerClass:
             return False
 
         #Create DB
-        self.mysqlClassObject.mysqlCreateDataBase(self.mongoDBObject.mongoGetCurrentDataBaseSet())
+        self.mysqlClassObject.mysqlCreateDataBase(self.mongoDBObject.mongoGetCurrentDataBaseName())
         #Connect to DB
-        self.mysqlClassObject.mysqlConnectDataBase(self.mongoDBObject.mongoGetCurrentDataBaseSet())
+        self.mysqlClassObject.mysqlConnectDataBase(self.mongoDBObject.mongoGetCurrentDataBaseName())
         #Create Table
-        result = ""
-        try:
-            self.mysqlClassObject.mySQLCreateDatabaseTableJsonType(collectionTable)
-        except:
-            print("Exception for Table Creation.")
+        self.mysqlClassObject.mySQLCreateDatabaseTableJsonType(collectionTable, mysqlDBEngineType)
 
         #Insert mongoDB records into JSON type field in MySQL
         for records in mongoDBCursor:

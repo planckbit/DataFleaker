@@ -5,7 +5,7 @@
 # Copyright (c) 2019 PlanckBit
 
 from DatabaseClass import DatabaseClass
-from MySQLClass import MySQLClass
+from MySQLClass import MySQLClass, MySQLEngineTypes
 from MariaDBClass import MariaDBClass
 from MongoDBClass import MongoDBClass
 from DataFleakerClass import DataFleakerClass
@@ -40,7 +40,8 @@ dataFleakerClassInstance.setMongoClassObjectToFleaker(mongoDBClassInstance)
 dataFleakerClassInstance.setMySQLClassObjectToFleaker(mySqlDBClassInstance)
 # Perform the magic, convert MongoDB results to a MySQL DB.
 dataFleakerClassInstance.dataFleakerMongoToMySQL(collectionTableName,
-                                                 mongoDBClassInstance.mongoFindAll(collectionTableName))
+                                                 mongoDBClassInstance.mongoFindAll(collectionTableName),
+                                                 MySQLEngineTypes.MYISAM.value)
 
 # Drop the Database. Uncomment to start fresh.
 #mongoDBClassInstance.mongoDropDataBase(dbName)

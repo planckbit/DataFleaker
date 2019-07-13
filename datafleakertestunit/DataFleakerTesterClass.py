@@ -220,7 +220,8 @@ class DataFleakerTesterClass:
         self.dataFleakerClass.setMongoClassObjectToFleaker(self.mongoDBClass)
         self.dataFleakerClass.setMySQLClassObjectToFleaker(self.mySqlDB)
         return self.dataFleakerClass.dataFleakerMongoToMySQL(collectionTable,
-                                                             self.mongoDBClass.mongoFindAll(DataFleakerTesterClass.collectionTableName))
+                                                             self.mongoDBClass.mongoFindAll(DataFleakerTesterClass.collectionTableName),
+                                                             MySQLClass.MYISAM)
 
 
 

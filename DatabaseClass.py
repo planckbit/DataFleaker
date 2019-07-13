@@ -11,7 +11,7 @@ class DatabaseClass:
     # Used for creating a unique instance ID
     instanceSeedID=99
     # tempfile director location
-    tempfile.tempdir = "/tmp/datafleaker"
+    tempfile.tempdir = tempfile.mkdtemp()
     
     def __init__(self, description: str):
         DatabaseClass.instanceCount += 1
@@ -20,10 +20,16 @@ class DatabaseClass:
         self.description = description
 
     def createTempFile(self):
-        self.tempFile = tempfile.NamedTemporaryFile()
+        try:
+            self.tempFile = tempfile.NamedTemporaryFile()
+        except:
+            print("Exception in tempFile creation")
 
     def closeTempFile(self):
-        self.tempFile.close()
+        try:
+            self.tempFile.close()
+        except:
+            print("Exception closing tempFile")
 
     def getTempFileName(self):
         return self.tempFile.name
