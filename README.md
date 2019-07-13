@@ -41,7 +41,7 @@ capabilties for query and searching.
         Ubuntu 18.04.2 LTS
         4.15.0-54-generic #58-Ubuntu SMP Mon Jun 24 10:55:24 UTC 2019
         x86_64 x86_64 x86_64 GNU/Linux
-    
+     
 ## Get Started:
     ~/Development/python/workroot$ git clone git@github.com:planckbit/DataFleaker.git
     ~/Development/python/workroot$ cd DataFleaker
