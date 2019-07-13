@@ -41,14 +41,14 @@ capabilties for query and searching.
         Ubuntu 18.04.2 LTS
         4.15.0-54-generic #58-Ubuntu SMP Mon Jun 24 10:55:24 UTC 2019
         x86_64 x86_64 x86_64 GNU/Linux
-     
+    
 ## Get Started:
     ~/Development/python/workroot$ git clone git@github.com:planckbit/DataFleaker.git
     ~/Development/python/workroot$ cd DataFleaker
     ~/Development/python/workroot/DataFleaker$ PYTHONPATH=~/Development/python/workroot/DataFleaker
     ~/Development/python/workroot/DataFleaker$ export PYTHONPATH
     ~/Development/python/workroot/DataFleaker$ cd examples/
-    ~/Development/python/workroot/DataFleaker/examples$ chmod 755 ConvertMongoDBResult_To_MySqlDB.py
+    ~/Development/pythong/workroot/DataFleaker/examples$ chmod 755 ConvertMongoDBResult_To_MySqlDB.py
     ~/Development/python/workroot/DataFleaker/examples$ ./ConvertMongoDBResult_To_MySqlDB.py
    
    Example Code executing:
@@ -106,5 +106,4 @@ capabilties for query and searching.
 ## Final Thoughts
     If you have any questions or ideas that you might like to see implemented in this prototype you can 
     email me at planckbit@att.net. Thanks.
-
 
