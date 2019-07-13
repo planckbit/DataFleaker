@@ -1,9 +1,10 @@
 <b>MIT License</b><br>
 <b><i>Copyright (c) 2019 PlanckBit</b>
-# DataFleaker - Convert Query Results Sets from different Databases sources to other Database sources on the fly
-<p align="center">
-  <img width="600" height="600" src="images/datafleaker.png">
+<p align="left">
+  <img width="200" height="200" src="images/datafleaker.png">
 </p>
+
+# DataFleaker - Convert Query Results Sets from different Databases sources to other Database sources on the fly
 
 ## Prototype Development Brief
 This is currently a prototype in development that I started developing due to my interest in determing the flexibility
@@ -99,8 +100,14 @@ capabilties for query and searching.
     Creating Database Universe
     Deleted - MySQL Database InstanceID=155
     Deleted - Mongo Database InstanceID=209
+# MongoDB
 <p align="left">
-    <img width="800" height="500" src="images/ConvertMongoDBResult_To_MySQLDB.png">
+    <img width="950" height="300" src="images/mongo_client_universe_galaxy.png">
+</p>    
+
+#MySQL/MariaDB
+<p align="left">
+    <img width="950" height="450" src="images/ConvertMongoDBResult_To_MySQLDB.png">
 </p>
 
 ## Final Thoughts
