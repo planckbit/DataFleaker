@@ -18,6 +18,8 @@ class DataFleakerTesterClass:
     inputBytes = b'Hello DataFleaker'
     mongoServerAddress = "mongodb://localhost:27017"
     dbName = "PlanetsDB"
+    dbTable = "PlanetLocations"
+    dbColumns = "(id INT NOT NULL, name VARCHAR(20))"
     collectionTableName = "Planets"
     collectionTableName2 = "Galaxies"
     dictRecord = {"planet": "Saturn", "location": "6th"}
@@ -90,13 +92,23 @@ class DataFleakerTesterClass:
             print(tables[0])
         print("Table Total Length = " + str(result.__len__()))
 
-    def df_Test_8_MysqlCreateDataBaase(self, newDatabaseName: str):
+    def df_Test_8_MysqlCreateDataBase(self, newDatabaseName: str):
         DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
-        # Create database DataFleaker if it don't exist
-        if (self.mySqlDB.mysqlCreateDataBase(newDatabaseName)):
-            print("SUCCESS CREATING DB")
-        else:
-            print("NO SUCCESS. DB Already Exist")
+        # Create database DataFleaker
+        self.mySqlDB.mysqlCreateDataBase(newDatabaseName)
+
+    def df_Test_9_MysqlCreateDataBaseTable(self,
+                                           dataBaseTableName: str,
+                                           dataBaseTableColumns: str,
+                                           dataBaseEngineType: str):
+        DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
+        print(dataBaseTableName)
+        print(dataBaseTableColumns)
+        print(dataBaseEngineType)
+        self.mySqlDB.mysqlCreateDatabaseTable(dataBaseTableName,
+                                              dataBaseTableColumns,
+                                              dataBaseEngineType)
+
 
     # Initial MariaDB Test Cases
     def df_Test_500_MariaDB_Connection(self, databaseName: str):

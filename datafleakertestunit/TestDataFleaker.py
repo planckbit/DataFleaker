@@ -5,6 +5,7 @@
 # Copyright (c) 2019 PlanckBit
 
 from DataFleakerTesterClass import DataFleakerTesterClass
+from MySQLClass import MySQLEngineTypes
 
 # Basic temp file creation for fast csv exporting and importing.
 # will be used for converting one DB to Another.
@@ -17,9 +18,11 @@ testDataFleaker.df_Test_3_MySQL_Description_InstanceCount()
 testDataFleaker.df_Test_4_MySQL_Show_Databases()
 testDataFleaker.df_Test_5_Mysql_ExecuteQuery_Show_Tables()
 testDataFleaker.df_Test_6_Mysql_ExecuteQuery_Basic_Query("SELECT * FROM user WHERE user='root'")
-testDataFleaker.df_Test_7_MysqlExecuteQuery_SwitchDBs("test")
-testDataFleaker.df_Test_8_MysqlCreateDataBaase("DataFleaker")
-
+testDataFleaker.df_Test_8_MysqlCreateDataBase("DataFleaker")
+testDataFleaker.df_Test_7_MysqlExecuteQuery_SwitchDBs("DataFleaker")
+testDataFleaker.df_Test_9_MysqlCreateDataBaseTable(testDataFleaker.dbTable,
+                                                   testDataFleaker.dbColumns,
+                                                   MySQLEngineTypes.MYISAM.value)
 # Basic MariaDBClass Testing
 testDataFleaker.df_Test_500_MariaDB_Connection("phpmyadmin")
 testDataFleaker.df_Test_501_MariaDB_Description_InstanceCount()

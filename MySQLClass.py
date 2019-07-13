@@ -4,6 +4,7 @@
 
 # import pymysql
 import mysql.connector
+from mysql.connector import errorcode
 from enum import Enum
 from DatabaseClass import DatabaseClass
 
@@ -51,22 +52,13 @@ class MySQLClass(DatabaseClass):
 
     def mysqlCreateDataBase(self, databaseName: str):
         try:
-            ret = True
             self.cursor = self.dbConnectorConnect.cursor()
-            self.cursor.execute("SHOW DATABASES LIKE '"+databaseName+"'")
-            results = self.cursor.fetchall()
-
-            if results.__len__() == 0 :
-                print("Creating Database "+databaseName)
-                self.cursor.execute("CREATE DATABASE "+databaseName)
-            else:
-                print("Database "+databaseName+" Exist")
-                ret = False
+            self.cursor.execute("CREATE DATABASE "+databaseName)
             self.cursor.close()
-            return ret
         except mysql.connector.Error as errorMsg:
             print(errorMsg)
-            exit(1)
+            if errorMsg.errno != errorcode.ER_DB_CREATE_EXISTS:
+                exit(1)
 
     def mysqlCreateDatabaseTable(self,
                                  databaseTableName: str,
@@ -77,7 +69,8 @@ class MySQLClass(DatabaseClass):
             self.cursor.execute("CREATE TABLE "+databaseTableName+" "+columnNames)
         except mysql.connector.Error as errorMsg:
             print(errorMsg)
-            #exit(1)
+            if errorMsg.errno != errorcode.ER_TABLE_EXISTS_ERROR:
+                exit(1)
 
     def mySQLCreateDatabaseTableJsonType(self,
                                          databaseTableName: str,
@@ -90,7 +83,7 @@ class MySQLClass(DatabaseClass):
                                 " (id INT NOT NULL AUTO_INCREMENT,json_record JSON, PRIMARY KEY (id)) ENGINE=" + mysqlDBEngineType + ";")
         except  mysql.connector.Error as errorMsg:
             print(errorMsg)
-            if errorMsg.errno != mysql.connector.errorcode.ER_TABLE_EXISTS_ERROR:
+            if errorMsg.errno != errorcode.ER_TABLE_EXISTS_ERROR:
                 exit(1)
 
     def mysqlExecuteQuery(self, strSQL: str):
