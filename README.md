@@ -100,12 +100,12 @@ capabilties for query and searching.
     Creating Database Universe
     Deleted - MySQL Database InstanceID=155
     Deleted - Mongo Database InstanceID=209
-##MongoDB Results
+## MongoDB Results
 <p align="left">
     <img width="950" height="300" src="images/mongo_client_universe_galaxy.png">
 </p>    
 
-##MySQL/MariaDB Results
+## MySQL/MariaDB Results
 <p align="left">
     <img width="950" height="450" src="images/ConvertMongoDBResult_To_MySQLDB.png">
 </p>
