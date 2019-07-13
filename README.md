@@ -105,5 +105,5 @@ capabilties for query and searching.
 
 ## Final Thoughts
     If you have any questions or ideas that you might like to see implemented in this prototype you can 
-    email me at planckbit@att.net. Thanks.
+    email me at planckbit@att.net. Thanks. 
 
