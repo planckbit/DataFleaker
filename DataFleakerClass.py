@@ -41,7 +41,7 @@ class DataFleakerClass:
     def setSQLite3ClassClassObjectToFleaker(self, sqlite3Object: SQLite3Class = None):
         self.sqlite3Object = sqlite3Object
 
-    def dataFleakerMongoToMySQL(self, collectionTable: str,
+    def dataFleakerMongoToMySQLMaria(self, collectionTable: str,
                                 mongoDBCursor: pymongo.cursor.Cursor,
                                 mysqlDBEngineType: str = MySQLEngineTypes.INNODB.value):
         if self.mongoDBObject == None:

@@ -5,7 +5,7 @@
 # import pymysql
 import mysql.connector
 from DatabaseClass import DatabaseClass
-from MySQLClass import MySQLClass
+from MySQLClass import MySQLClass, MySQLEngineTypes
 
 # Inherit from MySQLClass
 class MariaDBClass(MySQLClass):
@@ -23,7 +23,7 @@ class MariaDBClass(MySQLClass):
         self.passWord = passWord
 
     def getMariaDBClassInstanceCount(self):
-        return MySQLClass.mariaDBInstanceCount
+        return MariaDBClass.mariaDBInstanceCount
 
     def getMariaDBClassInstanceID(self):
         return self.mariaInstanceID
