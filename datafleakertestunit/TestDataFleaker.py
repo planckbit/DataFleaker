@@ -24,7 +24,7 @@ testDataFleaker.df_Test_9_MysqlCreateDataBaseTable(testDataFleaker.dbTable,
                                                    testDataFleaker.dbColumns,
                                                    MySQLEngineTypes.MYISAM.value)
 # Basic MariaDBClass Testing
-testDataFleaker.df_Test_500_MariaDB_Connection("phpmyadmin")
+testDataFleaker.df_Test_500_MariaDB_Connection("travis")
 testDataFleaker.df_Test_501_MariaDB_Description_InstanceCount()
 testDataFleaker.df_Test_502_MariaDB_Show_Databases()
 
