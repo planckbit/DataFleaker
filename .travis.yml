@@ -2,8 +2,12 @@ dist: xenial   # required for Python >= 3.7
 language: python
 python:
    - "3.6.8"
+
+addons:
+  - mariadb: '10.0'
+
 services:
-  - mysql
+#  - mysql
   - mongodb
 
 
