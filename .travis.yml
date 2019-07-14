@@ -1,13 +1,20 @@
-#dist: xenial   # required for Python >= 3.7
+dist: xenial   # required for Python >= 3.7
 language: python
 python:
    - "3.6.8"
+services:
+  -mysql
+  -mongodb
+
+before_install:
+  -
 # command to install dependencies
 install:
   - pip install -r requirements.txt
+before_script:
   - PYTHONPATH=./
   - export PYTHONPATH
-  - echo PYTHONPATH
+  - echo $PYTHONPATH
 # command to run tests
 script:
 #  - python3 ./pydatafleakerbuildtest.py
