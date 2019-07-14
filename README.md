@@ -1,4 +1,4 @@
-# DataFleaker  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Python 3.6.8](https://img.shields.io/badge/python-3.6.8-blue.svg)](https://www.python.org/downloads/release/python-368/)
+# DataFleaker  [![Build Status](https://travis-ci.org/planckbit/DataFleaker.svg?branch=master)](https://travis-ci.org/planckbit/DataFleaker) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Python 3.6.8](https://img.shields.io/badge/python-3.6.8-blue.svg)](https://www.python.org/downloads/release/python-368/)
 <p align="center">
   <img width="200" height="200" src="images/datafleaker.png">
 </p>
