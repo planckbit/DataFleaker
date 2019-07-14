@@ -20,3 +20,5 @@ before_script:
 script:
 #  - python3 ./pydatafleakerbuildtest.py
    - python3 ./datafleakertestunit/TestDataFleaker.py
+   - python3 ./examples/ConvertMongoDBResult_To_MariaDB.py
+   - python3 ./examples/ConvertMongoDBResult_To_MySqlDB.py
