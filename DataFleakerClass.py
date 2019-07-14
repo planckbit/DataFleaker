@@ -42,8 +42,8 @@ class DataFleakerClass:
         self.sqlite3Object = sqlite3Object
 
     def dataFleakerMongoToMySQLMaria(self, collectionTable: str,
-                                mongoDBCursor: pymongo.cursor.Cursor,
-                                mysqlDBEngineType: str = MySQLEngineTypes.INNODB.value):
+                                     mongoDBCursor: pymongo.cursor.Cursor,
+                                     mysqlDBEngineType: str = MySQLEngineTypes.INNODB.value):
         if self.mongoDBObject == None:
             print("No Valid MongoDBClass Object")
             return False

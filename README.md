@@ -1,5 +1,4 @@
-<b>MIT License</b><br>
-<b><i>Copyright (c) 2019 PlanckBit</b>
+# DataFleaker  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Python 3.6.8](https://img.shields.io/badge/python-3.6.8-blue.svg)](https://www.python.org/downloads/release/python-368/)
 <p align="left">
   <img width="200" height="200" src="images/datafleaker.png">
 </p>

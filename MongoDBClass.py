@@ -16,8 +16,11 @@ class MongoDBClass(DatabaseClass):
         self.client = pymongo.MongoClient(self.mongoDBServer)
 
     def mongoConnectDataBase(self, databaseName: str):
-        self.databaseName = databaseName
-        return self.client[self.databaseName]
+        try:
+            self.databaseName = databaseName
+            return self.client[self.databaseName]
+        except pymongo.errors.ConnectionFailure:
+            print(e)
 
     def mongoInsertOneRecord(self, collectionTable: str, dictRecord: dict):
         useDB = self.client[self.databaseName]
