@@ -21,7 +21,7 @@ in MySQL/MariaDB to query this new result set from the newly created DB. Or conv
 Mongo DB result set and using  the capabilities of the Mongo DB management system such as the built in JavaScript 
 capabilties for query and searching. 
 
-## Early Prototype Features
+## Early Prototype Features:
     * Current support for creating specific Class Objects for MongoDB, MySQLDB, MariaDB and SQLite3.
       This allows specific DB class objects to be passed into the DataFleaker for data result sets to be
       converted on the fly through one of the DataFleakers member APIs.
@@ -33,7 +33,7 @@ capabilties for query and searching.
       in MySQL/MariaDB. Note this is early work and the current conversion is a very basic SQL insert 
       operation, not optimized for speed and different DB engine types. 
       
- ## Tested with the following below.
+ ## Tested with:
     * python3
     * XAMPP 7.3.6 - Running 10.3.16-MariaDB
     * MongoDB - Running v4.0.10
@@ -51,7 +51,7 @@ capabilties for query and searching.
     ~/Development/pythong/workroot/DataFleaker/examples$ chmod 755 ConvertMongoDBResult_To_MySqlDB.py
     ~/Development/python/workroot/DataFleaker/examples$ ./ConvertMongoDBResult_To_MySqlDB.py
    
-   Example Code executing:
+   Example:
      
     from DatabaseClass import DatabaseClass
     from MySQLClass import MySQLClass
@@ -94,7 +94,7 @@ capabilties for query and searching.
     # Drop the Database
     #mongoDBClassInstance.mongoDropDataBase(dbName)
 
-## Output
+## Output:
     /usr/bin/python3.6 DataFleaker/examples/ConvertMongoDBResult_To_MySqlDB.py
     Creating Database Universe
     Deleted - MySQL Database InstanceID=155
