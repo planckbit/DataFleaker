@@ -4,10 +4,10 @@ python:
    - "3.6.8"
 
 addons:
-  - mariadb: '10.0'
+  - mariadb: "10.3"
 
 services:
-#  - mysql
+  - mysql
   - mongodb
 
 
