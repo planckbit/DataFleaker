@@ -2,4 +2,5 @@ mysql-connector
 pymongo
 pytest
 pytest-cov
+coverage
 coveralls
