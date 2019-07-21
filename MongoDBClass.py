@@ -80,11 +80,6 @@ class MongoDBClass(DatabaseClass):
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.update(dictQuery, dictUpdate)
 
-    def mongoUpdateManyRecords(self, collectionTable: str, dictQuery: dict, dictUpdate: dict):
-        useDB = self.client[self.databaseName]
-        useCollectionTable = useDB[collectionTable]
-        return useCollectionTable.update_many(dictQuery, dictUpdate)
-
     def mongoGetCurrentDataBaseName(self):
         return self.databaseName
 
