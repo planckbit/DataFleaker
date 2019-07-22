@@ -30,7 +30,11 @@ class MongoDBClass(DatabaseClass):
     def mongoInsertManyRecords(self, collectionTable: str, listRecords: list):
         useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
-        return useCollectionTable.insert_many(listRecords)
+        result = ""
+        try:
+            result = useCollectionTable.insert_many(listRecords)
+        except:
+            print(result)
 
     def mongoDropDataBase(self, dataBaseName: str):
         return self.client.drop_database(dataBaseName)

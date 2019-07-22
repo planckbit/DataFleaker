@@ -84,18 +84,23 @@ class DataFleakerClass:
 
         for rowRecords in mysqlDBCursorResults:
             while columnCount < columnLen:
-                dictEntry[str(columnNames[columnCount])] = rowRecords[columnCount].decode("utf-8")
+                try:
+                    dictEntry[str(columnNames[columnCount])] = rowRecords[columnCount].decode("utf-8")
+                except:
+                    dictEntry[str(columnNames[columnCount])] = str(rowRecords[columnCount])
+
                 columnCount += 1
             #print(dictEntry)
             listDictRecords.append(dictEntry)
             dictEntry = {}
             columnCount = 0
 
-        print(listDictRecords)
+        #print(listDictRecords)
+        #for i in listDictRecords:
+        #    print(i)
         #Create mongoDB and Insert the converted MySQL records in JSON to mongoDB.
         self.mongoDBObject.mongoConnectDataBase(self.mysqlClassObject.getDataBaseName())
-        mongoResult = self.mongoDBObject.mongoInsertManyRecords(mysqlMariaTableName, listDictRecords)
-        #print(mongoResult)
+        self.mongoDBObject.mongoInsertManyRecords(mysqlMariaTableName, listDictRecords)
 
     def __del__(self):
         DataFleakerClass.dataFleakerInstanceCount -= 1
