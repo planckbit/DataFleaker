@@ -41,6 +41,12 @@ class DatabaseClass:
         self.tempFile.seek(0)
         return self.tempFile.read()
 
+    def getDataBaseName(self):
+        return self.dataBaseName
+
+    def setDataBaseName(self, dataBaseName: str):
+        self.dataBaseName = dataBaseName
+
     def getDescription(self):
         return self.description
     

@@ -38,22 +38,23 @@ class MySQLClass(DatabaseClass):
         except mysql.connector.Error as errorMsg:
             print(errorMsg)
         
-    def mysqlConnectDataBase(self, databaseName: str):
+    def mysqlConnectDataBase(self, dataBaseName: str):
         try:
-            self.databaseName = databaseName
+            self.dataBaseName = dataBaseName
             self.dbConnectorConnect = mysql.connector.connect(user=self.userName,
                                                               password=self.passWord,
                                                               host=self.host,
-                                                              database=self.databaseName)
+                                                              database=self.dataBaseName)
             return self.dbConnectorConnect.connection_id
         except mysql.connector.Error as errorMsg:
             print(errorMsg)
             exit(1) #TODO: Build a better handler for all exit(1).
 
-    def mysqlCreateDataBase(self, databaseName: str):
+    def mysqlCreateDataBase(self, dataBaseName: str):
         try:
+            self.dataBaseName = dataBaseName
             self.cursor = self.dbConnectorConnect.cursor()
-            self.cursor.execute("CREATE DATABASE "+databaseName)
+            self.cursor.execute("CREATE DATABASE "+dataBaseName)
             self.cursor.close()
         except mysql.connector.Error as errorMsg:
             print(errorMsg)
@@ -91,6 +92,7 @@ class MySQLClass(DatabaseClass):
             self.cursor = self.dbConnectorConnect.cursor()
             self.cursor.execute(strSQL)
             result = self.cursor.fetchall()
+            self.columnNames = self.cursor.column_names
             self.cursor.close()
             return result
         except mysql.connector.Error as errorMsg:

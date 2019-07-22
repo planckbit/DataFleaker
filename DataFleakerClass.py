@@ -3,6 +3,7 @@
 # Copyright (c) 2019 PlanckBit
 
 import pymongo
+import mysql.connector
 from MySQLClass import MySQLClass, MySQLEngineTypes
 from MongoDBClass import MongoDBClass
 from SQLite3Class import SQLite3Class
@@ -41,7 +42,8 @@ class DataFleakerClass:
     def setSQLite3ClassClassObjectToFleaker(self, sqlite3Object: SQLite3Class = None):
         self.sqlite3Object = sqlite3Object
 
-    def dataFleakerMongoToMySQLMaria(self, collectionTable: str,
+    def dataFleakerMongoToMySQLMaria(self,
+                                     collectionTable: str,
                                      mongoDBCursor: pymongo.cursor.Cursor,
                                      mysqlDBEngineType: str = MySQLEngineTypes.INNODB.value):
         if self.mongoDBObject == None:
@@ -52,9 +54,9 @@ class DataFleakerClass:
             return False
 
         #Create DB
-        self.mysqlClassObject.mysqlCreateDataBase(self.mongoDBObject.mongoGetCurrentDataBaseName())
+        self.mysqlClassObject.mysqlCreateDataBase(self.mongoDBObject.getDataBaseName())
         #Connect to DB
-        self.mysqlClassObject.mysqlConnectDataBase(self.mongoDBObject.mongoGetCurrentDataBaseName())
+        self.mysqlClassObject.mysqlConnectDataBase(self.mongoDBObject.getDataBaseName())
         #Create Table
         self.mysqlClassObject.mySQLCreateDatabaseTableJsonType(collectionTable, mysqlDBEngineType)
 
@@ -64,8 +66,41 @@ class DataFleakerClass:
             #print(strQuery)
             self.mysqlClassObject.mysqlExecuteInsert(strQuery)
 
+    def dataFleakerMySQLMariaToMongoDB(self,
+                                       mysqlMariaTableName: str,
+                                       mysqlDBCursorResults):
+        if self.mongoDBObject == None:
+            print("No Valid MongoDBClass Object")
+            return False
+        if self.mysqlClassObject == None:
+            print("No Valid MySQLClass Object")
+            return False
+
+        dictEntry = {}
+        listDictRecords = []
+        columnCount = 0
+        columnNames = self.mysqlClassObject.columnNames
+        columnLen = len(columnNames)
+
+        for rowRecords in mysqlDBCursorResults:
+            while columnCount < columnLen:
+                dictEntry[str(columnNames[columnCount])] = rowRecords[columnCount].decode("utf-8")
+                columnCount += 1
+            #print(dictEntry)
+            listDictRecords.append(dictEntry)
+            dictEntry = {}
+            columnCount = 0
+
+        print(listDictRecords)
+        #Create mongoDB and Insert the converted MySQL records in JSON to mongoDB.
+        self.mongoDBObject.mongoConnectDataBase(self.mysqlClassObject.getDataBaseName())
+        mongoResult = self.mongoDBObject.mongoInsertManyRecords(mysqlMariaTableName, listDictRecords)
+        #print(mongoResult)
+
     def __del__(self):
         DataFleakerClass.dataFleakerInstanceCount -= 1
+
+
 
 
 
