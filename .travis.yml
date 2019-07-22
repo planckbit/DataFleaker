@@ -25,6 +25,7 @@ script:
    - python3 ./datafleakertestunit/TestDataFleaker.py
    - python3 ./examples/ConvertMongoDBResult_To_MariaDB.py
    - python3 ./examples/ConvertMongoDBResult_To_MySqlDB.py
+   - python3 ./examples/ConvertMariaDBResult_To_MongoDB.py
    - coverage run datafleakertestunit/TestDataFleaker.py
 after_success:
   - coveralls
