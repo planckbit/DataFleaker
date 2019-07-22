@@ -15,73 +15,70 @@ class MongoDBClass(DatabaseClass):
         self.mongoDBServer = mongoDBServer
         self.client = pymongo.MongoClient(self.mongoDBServer)
 
-    def mongoConnectDataBase(self, databaseName: str):
+    def mongoConnectDataBase(self, dataBaseName: str):
         try:
-            self.databaseName = databaseName
-            return self.client[self.databaseName]
+            self.dataBaseName = dataBaseName
+            return self.client[self.dataBaseName]
         except pymongo.errors.ConnectionFailure:
             print(e)
 
     def mongoInsertOneRecord(self, collectionTable: str, dictRecord: dict):
-        useDB = self.client[self.databaseName]
+        useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.insert_one(dictRecord)
 
     def mongoInsertManyRecords(self, collectionTable: str, listRecords: list):
-        useDB = self.client[self.databaseName]
+        useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.insert_many(listRecords)
 
-    def mongoDropDataBase(self, databaseName: str):
-        return self.client.drop_database(databaseName)
+    def mongoDropDataBase(self, dataBaseName: str):
+        return self.client.drop_database(dataBaseName)
 
     def mongoDropCollectionTable(self, collectionTable: str):
-        useDB = self.client[self.databaseName]
+        useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.drop()
 
     def mongoFindOne(self, collectionTable: str):
-        useDB = self.client[self.databaseName]
+        useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find_one()
 
     def mongoFindAll(self, collectionTable: str, limit=0):
-        useDB = self.client[self.databaseName]
+        useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find().limit(limit)
 
     def mongoFindAllSpecificFields(self, collectionTable: str, dictFields: dict, limit=0):
-        useDB = self.client[self.databaseName]
+        useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find({}, dictFields).limit(limit)
 
     def mongoFindAllFilter(self, collectionTable: str, dictQuery: dict, limit=0):
-        useDB = self.client[self.databaseName]
+        useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find(dictQuery).limit(limit)
 
     def mongoFindAllSpecificFieldsFilter(self, collectionTable: str, dictQuery: dict, dictFields: dict, limit=0):
-        useDB = self.client[self.databaseName]
+        useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.find(dictQuery, dictFields).limit(limit)
 
     def mongoDeleteOneRecord(self, collectionTable: str, dictQuery: dict):
-        useDB = self.client[self.databaseName]
+        useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.delete_one(dictQuery)
 
     def mongoDeleteManyRecords(self, collectionTable: str, dictQuery: dict):
-        useDB = self.client[self.databaseName]
+        useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.delete_many(dictQuery)
 
     def mongoUpdateOneRecord(self, collectionTable: str, dictQuery: dict, dictUpdate: dict):
-        useDB = self.client[self.databaseName]
+        useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
         return useCollectionTable.update(dictQuery, dictUpdate)
-
-    def mongoGetCurrentDataBaseName(self):
-        return self.databaseName
 
     def printMongoShowDatabases(self):
         print(self.client.list_database_names())
