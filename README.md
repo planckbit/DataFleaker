@@ -29,6 +29,7 @@ capabilties for query and searching.
     * Current support for converting a MongoDB result set(JSON format) to a New DB with JSON Type field
       in MySQL/MariaDB. Note this is early work and the current conversion is a very basic SQL insert 
       operation, not optimized for speed and different DB engine types. 
+    * New support for converting simple result MariaDB queries to MongoDB. See examples/ConvertMariaDBResult_To_MongoDB.py
       
  ## Tested with:
     * python3
