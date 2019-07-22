@@ -17,7 +17,7 @@ mariaDBClassInstance = MariaDBClass("localhost", "root", "")
 # Create MariaDBClass instance, Connect and select a Database.
 mariaDBClassInstance.mysqlConnect()
 mariaDBClassInstance.mysqlConnectDataBase("mysql")
-result = mariaDBClassInstance.mysqlExecuteQuery("SELECT Host, User FROM user")
+result = mariaDBClassInstance.mysqlExecuteQuery("SELECT * FROM user")
 
 # Create MongoDBClass instance, Connect and select a Database.
 mongoDBClassInstance = MongoDBClass(mongoServerAddress)
