@@ -139,18 +139,6 @@ class DataFleakerTesterClass:
         # Create mongoDB Object
         self.mongoDBClass = MongoDBClass(mongoServerAddress)
         mongoDatabase = self.mongoDBClass.mongoConnectDataBase(dbName)
-        mongoResult = self.MongoDBClass.mongoInsertOneRecord(collectionTableName, dictRecord)
-        print(mongoResult)
-
-    def df_Test_1000_MongoDBCreateMongoDB(self,
-                                           mongoServerAddress: str,
-                                           dbName: str,
-                                           collectionTableName: str,
-                                           dictRecord: str):
-        DatabaseClass.printClassFunctionName(self.__class__.__name__, inspect.stack()[0][3])
-        # Create mongoDB Object
-        self.mongoDBClass = MongoDBClass(mongoServerAddress)
-        mongoDatabase = self.mongoDBClass.mongoConnectDataBase(dbName)
         mongoResult = self.mongoDBClass.mongoInsertOneRecord(collectionTableName, dictRecord)
         print(mongoResult)
 
