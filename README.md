@@ -29,7 +29,8 @@ capabilties for query and searching.
     * Current support for converting a MongoDB result set(JSON format) to a New DB with JSON Type field
       in MySQL/MariaDB. Note this is early work and the current conversion is a very basic SQL insert 
       operation, not optimized for speed and different DB engine types. 
-    * New support for converting simple result MariaDB queries to MongoDB. See examples/ConvertMariaDBResult_To_MongoDB.py
+    * New support for converting simple result MariaDB queries to MongoDB. 
+      See examples/ConvertMariaDBResult_To_MongoDB.py
       
  ## Tested with:
     * python3
@@ -49,7 +50,7 @@ capabilties for query and searching.
     ~/Development/pythong/workroot/DataFleaker/examples$ chmod 755 ConvertMongoDBResult_To_MySqlDB.py
     ~/Development/python/workroot/DataFleaker/examples$ ./ConvertMongoDBResult_To_MySqlDB.py
    
-   Example:
+   Example-1:
      
     from DatabaseClass import DatabaseClass
     from MySQLClass import MySQLClass
@@ -106,6 +107,13 @@ capabilties for query and searching.
 <p align="left">
     <img width="950" height="450" src="images/ConvertMongoDBResult_To_MySQLDB.png">
 </p>
+
+   Example-2
+## mongoDB results - user table from mysql converted to mongodb.
+<p align="left">
+    <img width="950" height="450" src="images/maria_convert_to_mongo.png">
+</p>   
+   
 
 ## Final Thoughts
     If you have any questions or ideas that you might like to see implemented in this prototype you can 
