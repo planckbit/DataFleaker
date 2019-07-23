@@ -26,6 +26,11 @@ script:
    - python3 ./examples/ConvertMongoDBResult_To_MariaDB.py;
    - python3 ./examples/ConvertMongoDBResult_To_MySqlDB.py;
    - python3 ./examples/ConvertMariaDBResult_To_MongoDB.py;
-   - coverage run datafleakertestunit/TestDataFleaker.py
+   - coverage erase
+   - coverage run -a datafleakertestunit/TestDataFleaker.py
+   - coverage run -a examples/ConvertMariaDBResult_To_MongoDB.py
+   - coverage run -a examples/ConvertMongoDBResult_To_MariaDB.py
+   - coverage run -a examples/ConvertMongoDBResult_To_MySqlDB.py
+   - coverage report --omit=/home/travis/virtualenv/python3.6.8/lib*
 after_success:
   - coveralls

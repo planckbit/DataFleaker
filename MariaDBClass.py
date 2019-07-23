@@ -3,7 +3,6 @@
 # Copyright (c) 2019 PlanckBit
 
 # import pymysql
-import mysql.connector
 from DatabaseClass import DatabaseClass
 from MySQLClass import MySQLClass, MySQLEngineTypes
 
