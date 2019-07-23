@@ -1,0 +1,2 @@
+[report]
+omit = /home/travis/virtualenv/python3.6.8/lib*
