@@ -44,4 +44,4 @@ dataFleakerClassInstance.dataFleakerMongoToMySQLMaria(collectionTableName,
                                                  MySQLEngineTypes.MYISAM.value)
 
 # Drop the Database. Uncomment to start fresh.
-mongoDBClassInstance.mongoDropDataBase(dbName)
+#mongoDBClassInstance.mongoDropDataBase(dbName)
