@@ -103,7 +103,7 @@ capabilties for query and searching.
 
 ## MySQL/MariaDB Results
 <p align="left">
-    <img width="950" height="450" src="images/ConvertMongoDBResult_To_MySQLDB.png">
+    <img width="650" height="400" src="images/mongo_convert_to_mysql.png">
 </p>
 
    Example-2: Simple MariaDB query result converted to MongoDB.
