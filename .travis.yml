@@ -17,7 +17,6 @@ before_install:
 # command to install dependencies
 install:
   - pip3 install -r requirements.txt
-  - pip install --egg http://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python-2.1.4.zip
 
 before_script:
   - PYTHONPATH=./

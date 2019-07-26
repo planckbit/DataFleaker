@@ -1,4 +1,5 @@
 #mysql-connector-python
+pip install mysql-connector-python-rf
 pymongo
 pytest
 pytest-cov
