@@ -22,6 +22,8 @@ listRecords = [{"galaxy": "Milky Way", "diameter": "105k light years"},
 
 # Initial MySQL/Maria DB Connection Instance.
 mySqlDBClassInstance = MySQLClass("localhost", "root", "")
+# For local docker testing
+#mySqlDBClassInstance = MySQLClass("172.17.0.2", "root", "mypassword")
 
 # Connect to Mysql, but select no DB.
 mySqlDBClassInstance.mysqlConnect()

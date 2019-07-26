@@ -1,4 +1,4 @@
-mysql-connector
+mysql-connector-python
 pymongo
 pytest
 pytest-cov

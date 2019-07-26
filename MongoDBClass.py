@@ -52,7 +52,8 @@ class MongoDBClass(DatabaseClass):
     def mongoFindAll(self, collectionTable: str, limit=0):
         useDB = self.client[self.dataBaseName]
         useCollectionTable = useDB[collectionTable]
-        return useCollectionTable.find().limit(limit)
+        dictNoId = {"_id": 0}
+        return useCollectionTable.find({}, dictNoId).limit(limit)
 
     def mongoFindAllSpecificFields(self, collectionTable: str, dictFields: dict, limit=0):
         useDB = self.client[self.dataBaseName]

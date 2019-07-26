@@ -80,7 +80,11 @@ class DataFleakerTesterClass:
         # List records retrieve from Database Query.
         result = self.mySqlDB.mysqlExecuteQuery(sqlStr)
         for rows in result:
-            print((rows[0]).decode("utf8"))
+            try:
+                print((rows[0]))
+            except:
+                print("Error printing rows")
+
         print("Total Rows Result Size = " + str(result.__len__()))
 
     def df_Test_7_MysqlExecuteQuery_SwitchDBs(self,databaseName: str):

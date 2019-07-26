@@ -4,6 +4,7 @@
 
 import pymongo
 import mysql.connector
+import json
 from MySQLClass import MySQLClass, MySQLEngineTypes
 from MongoDBClass import MongoDBClass
 from SQLite3Class import SQLite3Class
@@ -62,7 +63,10 @@ class DataFleakerClass:
 
         #Insert mongoDB records into JSON type field in MySQL
         for records in mongoDBCursor:
-            strQuery = "INSERT INTO "+collectionTable+"(json_record) VALUES(\""+str(records)+"\")"
+            #print(str(records))
+            #For Mysql 5.7 and greater we need double double quotes for it to be accepted as a json_type.
+            # This issue is not the case for MariaDB. This works for both.
+            strQuery = "INSERT INTO "+collectionTable+"(json_record) VALUES(\""+json.dumps(records).replace("\"","\"\"")+"\")"
             #print(strQuery)
             self.mysqlClassObject.mysqlExecuteInsert(strQuery)
 

@@ -2,7 +2,6 @@
 # MIT License
 # Copyright (c) 2019 PlanckBit
 
-# import pymysql
 import mysql.connector
 from mysql.connector import errorcode
 from enum import Enum
@@ -22,19 +21,23 @@ class MySQLClass(DatabaseClass):
     def __init__(self,
                  host: str,
                  userName: str,
-                 passWord: str):
+                 passWord: str,
+                 auth_plugin: str = 'mysql_native_password'):
         DatabaseClass.__init__(self, "MySQL Database")
         MySQLClass.mysqlDBInstanceCount += 1
         self.mysqlInstanceID = DatabaseClass.instanceSeedID
         self.host = host
         self.userName = userName
         self.passWord = passWord
+        self.auth_plugin = auth_plugin
 
     def mysqlConnect(self):
         try:
             self.dbConnectorConnect = mysql.connector.connect(user=self.userName,
                                                               password=self.passWord,
-                                                              host=self.host)
+                                                              host=self.host,
+                                                              database='',
+                                                              auth_plugin=self.auth_plugin)
         except mysql.connector.Error as errorMsg:
             print(errorMsg)
         
@@ -44,7 +47,8 @@ class MySQLClass(DatabaseClass):
             self.dbConnectorConnect = mysql.connector.connect(user=self.userName,
                                                               password=self.passWord,
                                                               host=self.host,
-                                                              database=self.dataBaseName)
+                                                              database=self.dataBaseName,
+                                                              auth_plugin=self.auth_plugin)
             return self.dbConnectorConnect.connection_id
         except mysql.connector.Error as errorMsg:
             print(errorMsg)
