@@ -1,6 +1,6 @@
 # DataFleaker  [![Build Status](https://travis-ci.org/planckbit/DataFleaker.svg?branch=master)](https://travis-ci.org/planckbit/DataFleaker) [![Coverage Status](https://coveralls.io/repos/github/planckbit/DataFleaker/badge.svg?branch=master&service=github)](https://coveralls.io/github/planckbit/DataFleaker?branch=master)<img align="right" width="200" height="200" src="images/datafleaker.png"> [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Python 3.6.8](https://img.shields.io/badge/python-3.6.8-blue.svg)](https://www.python.org/downloads/release/python-368/)
 
-## DataFleaker - Instantly Convert Results Sets From Mongo DB to MySQL DB or Maria DB and Vice Versa.
+## DataFleaker - Instantly Convert Query Results Sets From Mongo DB to MySQL DB or Maria DB and Vice Versa.
 
 ## Description
 The purpose of DataFleaker is to provide a robust object oriented API that allows the developer to query Mongo(NoSQL) or
