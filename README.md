@@ -31,6 +31,7 @@ capabilties for query and searching.
       operation, not optimized for speed and different DB engine types. 
     * New support for converting simple result MariaDB queries to MongoDB. 
       See examples/ConvertMariaDBResult_To_MongoDB.py
+    * Added bulk insert capability for MongoDB to MySQL/Maria DB.
       
  ## Tested with:
     * python3

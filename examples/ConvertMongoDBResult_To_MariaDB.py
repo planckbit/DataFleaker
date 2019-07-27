@@ -22,6 +22,8 @@ listRecords = [{"galaxy": "Milky Way", "diameter": "105k light years"},
 
 # Initial Maria DB Connection Instance.
 mariaDBClassInstance = MariaDBClass("localhost", "root", "")
+# For local docker testing
+#mariaDBClassInstance = MariaDBClass("172.17.0.2", "root", "mypassword")
 
 # Connect to Maria, but select no DB.
 mariaDBClassInstance.mysqlConnect()
@@ -41,7 +43,8 @@ dataFleakerClassInstance.setMySQLClassObjectToFleaker(mariaDBClassInstance)
 # Perform the magic, convert MongoDB results to a Maria DB.
 dataFleakerClassInstance.dataFleakerMongoToMySQLMaria(collectionTableName,
                                                       mongoDBClassInstance.mongoFindAll(collectionTableName),
-                                                      MySQLEngineTypes.INNODB.value)
+                                                      MySQLEngineTypes.INNODB.value,
+                                                      True)
 
 # Drop the Database. Uncomment to start fresh.
 #mongoDBClassInstance.mongoDropDataBase(dbName)

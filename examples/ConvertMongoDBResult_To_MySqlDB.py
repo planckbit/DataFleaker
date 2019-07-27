@@ -43,7 +43,8 @@ dataFleakerClassInstance.setMySQLClassObjectToFleaker(mySqlDBClassInstance)
 # Perform the magic, convert MongoDB results to a MySQL DB.
 dataFleakerClassInstance.dataFleakerMongoToMySQLMaria(collectionTableName,
                                                  mongoDBClassInstance.mongoFindAll(collectionTableName),
-                                                 MySQLEngineTypes.MYISAM.value)
+                                                 MySQLEngineTypes.MYISAM.value,
+                                                 True)
 
 # Drop the Database. Uncomment to start fresh.
 #mongoDBClassInstance.mongoDropDataBase(dbName)

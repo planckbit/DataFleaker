@@ -46,7 +46,8 @@ class DataFleakerClass:
     def dataFleakerMongoToMySQLMaria(self,
                                      collectionTable: str,
                                      mongoDBCursor: pymongo.cursor.Cursor,
-                                     mysqlDBEngineType: str = MySQLEngineTypes.INNODB.value):
+                                     mysqlDBEngineType: str = MySQLEngineTypes.INNODB.value,
+                                     bulkInsert: bool = False):
         if self.mongoDBObject == None:
             print("No Valid MongoDBClass Object")
             return False
@@ -62,13 +63,24 @@ class DataFleakerClass:
         self.mysqlClassObject.mySQLCreateDatabaseTableJsonType(collectionTable, mysqlDBEngineType)
 
         #Insert mongoDB records into JSON type field in MySQL
+        strQuery_1 = "INSERT INTO " + collectionTable + "(json_record) VALUES"
+        strQuery_2 = ""
         for records in mongoDBCursor:
             #print(str(records))
             #For Mysql 5.7 and greater we need double double quotes for it to be accepted as a json_type.
             # This issue is not the case for MariaDB. This works for both.
-            strQuery = "INSERT INTO "+collectionTable+"(json_record) VALUES(\""+json.dumps(records).replace("\"","\"\"")+"\")"
-            #print(strQuery)
-            self.mysqlClassObject.mysqlExecuteInsert(strQuery)
+            if not bulkInsert:
+                strQuery_2 = "(\""+json.dumps(records).replace("\"","\"\"")+"\")"
+                #print(strQuery)
+                self.mysqlClassObject.mysqlExecuteInsert(strQuery_1 + strQuery_2)
+            else:
+                strQuery_2 += "(\""+json.dumps(records).replace("\"","\"\"")+"\"),"
+
+        if bulkInsert:
+            #strip last char ','
+            strQuery_2 = strQuery_2[:-1]
+            #print(strQuery_1 + strQuery_2)
+            self.mysqlClassObject.mysqlExecuteInsert(strQuery_1 + strQuery_2)
 
     def dataFleakerMySQLMariaToMongoDB(self,
                                        mysqlMariaTableName: str,
