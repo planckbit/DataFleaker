@@ -3,14 +3,15 @@
 ## DataFleaker - Instantly Convert Results Sets From Mongo DB to MySQL DB or Maria DB and Vice Versa.
 
 ## Description
-The purpose of DataFleaker is to convert specific database query result sets to other databases. Specifically between 
-NoSQL and SQL database management systems and vice versa. This allows developers the flexibility to use 
-the additional services in specific DBMS when converting from one to the other. 
+The purpose of DataFleaker is to provide a robust object oriented API that allows the developer to query Mongo(NoSQL) or
+MySQL/Maria databases and convert the results instantly to another database, specifically between NoSQL and SQL 
+database management systems and vice versa. This allows developers the flexibility to use the additional services in
+specific DBMS when converting from one to the other. 
+
 For example, converting a result set return by a NoSQL DB such as Mongo which is in JSON format directly into a
-MySQL/MariaDB Database on the fly. Then using SQL and built in JSON api's in MySQL/Maria DB to query this new result 
-set from the newly created DB. Or converting a MySQL/MariaDB result set to a 
-Mongo DB result set and using the capabilities of the Mongo DB management system such as the built in JavaScript 
-capabilties for query and searching. 
+MySQL/MariaDB Database using the json_type available field on the fly. Then using MySQL/Maria's built in JSON API's 
+to query this new result set from the newly created DB. The conversion of MySQL/MariaDB query results to  
+Mongo DB is also supported. 
 
 ## Early Prototype Features:
     * Current support for creating specific Class Objects for MongoDB, MySQLDB, MariaDB and SQLite3.
