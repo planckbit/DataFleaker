@@ -2,20 +2,14 @@
 
 ## DataFleaker - Instantly Convert Results Sets From Mongo DB to MySQL DB or Maria DB and Vice Versa.
 
-## Prototype Development Brief
-This is currently a prototype in development that I started developing due to my interest in determing the flexibility
-of converting different results sets from specific DB management systems to different DB management systems on the fly
-such as NoSQL and Relational based databases. The concept is nothing new in terms of ETL but is worth exploring the 
-capabilties and feasbilties involved which is what this prototype intends to capture.
-
 ## Description
-The purpose of DataFleaker is to convert specific database result sets to other database result sets for different
-database management systems. This allows developers the flexibility to use the additional services(SQL and Javascript 
-for query,Replication, etc)  provided by different database management systems that other database management systems 
-may lack. For example, converting a result set return by a NoSQL DB such as
-Mongo which is in JSON format directly into a MySQL/MariaDB Database on the fly. Then using SQL and built in JSON api's
-in MySQL/MariaDB to query this new result set from the newly created DB. Or converting a MySQL/MariaDB result set to a 
-Mongo DB result set and using  the capabilities of the Mongo DB management system such as the built in JavaScript 
+The purpose of DataFleaker is to convert specific database query result sets to other databases. Specifically between 
+NoSQL and SQL database management systems and vice versa. This allows developers the flexibility to use 
+the additional services in specific DBMS when converting from one to the other. 
+For example, converting a result set return by a NoSQL DB such as Mongo which is in JSON format directly into a
+MySQL/MariaDB Database on the fly. Then using SQL and built in JSON api's in MySQL/Maria DB to query this new result 
+set from the newly created DB. Or converting a MySQL/MariaDB result set to a 
+Mongo DB result set and using the capabilities of the Mongo DB management system such as the built in JavaScript 
 capabilties for query and searching. 
 
 ## Early Prototype Features:
@@ -24,17 +18,15 @@ capabilties for query and searching.
       converted on the fly through one of the DataFleakers member APIs.
     * Current support for connecting to MongoDB, MySqlDB, MariaDB, and SQLite3 through the object instances.
     * Current support for executing basic queries(DB Creation, Tables/Collections, and simple queries)
-      on MongoDB, MySQLDB, MariaDB, and SQLite3. Note these are early implemenations so there is no 
-      error checks for specific conditions etc... In other words this is no where near production code.
+      on MongoDB, MySQLDB, MariaDB, and SQLite3.
     * Current support for converting a MongoDB result set(JSON format) to a New DB with JSON Type field
-      in MySQL/MariaDB. Note this is early work and the current conversion is a very basic SQL insert 
-      operation, not optimized for speed and different DB engine types. 
-    * New support for converting simple result MariaDB queries to MongoDB. 
+      in MySQL/MariaDB. 
+    * New support for converting simple result MariaDB or MysqlDB queries to MongoDB. 
       See examples/ConvertMariaDBResult_To_MongoDB.py
-    * Added bulk insert capability for MongoDB to MySQL/Maria DB.
+    * Added bulk insert capability for MongoDB to MySQL/Maria DB for faster conversion.
       
  ## Tested with:
-    * python3
+    * python3.x
     * pip3 install mysql-connector-python
     * XAMPP 7.3.6 - Running 10.3.16-MariaDB
     * MongoDB - Running v4.0.10
@@ -52,11 +44,10 @@ capabilties for query and searching.
     ~/Development/pythong/workroot/DataFleaker/examples$ chmod 755 ConvertMongoDBResult_To_MySqlDB.py
     ~/Development/python/workroot/DataFleaker/examples$ ./ConvertMongoDBResult_To_MySqlDB.py
    
-   Example-1: Simple  MongoDB query result Converted to Mysql DB.
+   <b>Example-1: Simple  MongoDB query result Converted to Mysql DB.</b>
      
     from DatabaseClass import DatabaseClass
-    from MySQLClass import MySQLClass
-    from MariaDBClass import MariaDBClass
+    from MySQLClass import MySQLClass, MySQLEngineTypes
     from MongoDBClass import MongoDBClass
     from DataFleakerClass import DataFleakerClass
 
@@ -71,8 +62,9 @@ capabilties for query and searching.
                    {"galaxy": "Cigar", "diameter": "37k light years"},
                    {"galaxy": "Pinwheel", "diameter": "170k light years"}]
 
-    # Initial MySQL DB Connection Instance.
+    # Initial MySQL/Maria DB Connection Instance.
     mySqlDBClassInstance = MySQLClass("localhost", "root", "")
+    
     # Connect to Mysql, but select no DB.
     mySqlDBClassInstance.mysqlConnect()
 
@@ -83,14 +75,16 @@ capabilties for query and searching.
     # Insert a few records.
     mongoDBClassInstance.mongoInsertManyRecords(collectionTableName, listRecords)
 
-    # Convert MongoDB Query Result to a MySQL Database
-    dataFleakerClassInstance = DataFleakerClass("DataFleaker Instance") 
+    # Create dataFleaker instance for converting MongoDB query result to a MySQL database
+    dataFleakerClassInstance = DataFleakerClass("DataFleaker Instance")
     # Set the DB object instances where we want DataFleaker to do the result conversion
     dataFleakerClassInstance.setMongoClassObjectToFleaker(mongoDBClassInstance)
     dataFleakerClassInstance.setMySQLClassObjectToFleaker(mySqlDBClassInstance)
-    # Perform the magic, convert MongoDB results to a MySQL DB.
-    dataFleakerClassInstance.dataFleakerMongoToMySQL(collectionTableName,
-                                                     mongoDBClassInstance.mongoFindAll(collectionTableName))
+    # Convert Mongo DB results to a MySQL DB.
+    dataFleakerClassInstance.dataFleakerMongoToMySQLMaria(collectionTableName,
+                                                          mongoDBClassInstance.mongoFindAll(collectionTableName),
+                                                          MySQLEngineTypes.MYISAM.value,
+                                                          True)
   
 ## Output:
     /usr/bin/python3.6 DataFleaker/examples/ConvertMongoDBResult_To_MySqlDB.py
@@ -107,7 +101,7 @@ capabilties for query and searching.
     <img width="650" height="400" src="images/mongo_convert_to_mysql.png">
 </p>
 
-   Example-2: Simple MariaDB query result converted to MongoDB.
+   <b>Example-2: Simple MariaDB query result converted to MongoDB.</b>
    
     from DatabaseClass import DatabaseClass
     from MariaDBClass import MariaDBClass, MySQLEngineTypes
@@ -128,13 +122,13 @@ capabilties for query and searching.
     # Create MongoDBClass instance, Connect and select a Database.
     mongoDBClassInstance = MongoDBClass(mongoServerAddress)
 
-    # Convert mariaDB Query Result to a Mongo Database
+    # Create dataFleaker instance for Converting Maria DB Query Result to a Mongo database
     dataFleakerClassInstance = DataFleakerClass("DataFleaker Instance")
     # Set the DB object instances where we want DataFleaker to do the result conversion
     dataFleakerClassInstance.setMongoClassObjectToFleaker(mongoDBClassInstance)
     dataFleakerClassInstance.setMySQLClassObjectToFleaker(mariaDBClassInstance)
 
-    # Perform the magic, convert Maria DB to MongoDB.
+    # Convert Maria DB to Mongo DB.
     dataFleakerClassInstance.dataFleakerMySQLMariaToMongoDB("user", result)
 
 ## mongoDB results - user table from mysql converted to mongoDB.
