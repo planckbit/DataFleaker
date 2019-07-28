@@ -11,8 +11,8 @@ services in specific DBMS when converting from one to the other for their applic
 For example, converting a result set return by a NoSQL DB such as Mongo which is in JSON format directly into a
 MySQL/MariaDB Database as a native JSON field in the table. Then using MySQL/Maria's built in native JSON feature
 to query this new result set from the newly created DB. This conversion to MySQL/Maria helps verify document validation,
-convenience, and efficient access through the available [MySQL Functions](https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html)
-JSON functions in MySQL/Maria.  The conversion of MySQL/MariaDB query results to Mongo DB is also supported. 
+convenience, and efficient access through the available [JSON Functions](https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html)
+in MySQL/Maria.  The conversion of MySQL/MariaDB query results to Mongo DB is also supported. 
 
 ## Early Prototype Features:
     * Current support for creating specific Class Objects for MongoDB, MySQLDB, MariaDB and SQLite3.
