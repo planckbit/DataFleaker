@@ -11,7 +11,7 @@ services in specific DBMS when converting from one to the other for their applic
 For example, converting a result set return by a NoSQL DB such as Mongo which is in JSON format directly into a
 MySQL/MariaDB Database as a native JSON field in the table. Then using MySQL/Maria's built in native JSON feature
 to query this new result set from the newly created DB. This conversion to MySQL/Maria helps verify document validation,
-convenience and efficient access through the available [MySQL Functions](https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html)
+convenience, and efficient access through the available [MySQL Functions](https://dev.mysql.com/doc/refman/8.0/en/json-modification-functions.html)
 JSON functions in MySQL/Maria.  The conversion of MySQL/MariaDB query results to Mongo DB is also supported. 
 
 ## Early Prototype Features:
@@ -28,9 +28,9 @@ JSON functions in MySQL/Maria.  The conversion of MySQL/MariaDB query results to
     * Added bulk insert capability for MongoDB to MySQL/Maria DB for faster conversion.
       
  ## Tested with:
-    * python3.x
+    * python3.X
     * pip3 install mysql-connector-python
-    * XAMPP 7.3.6 - Running 10.3.16-MariaDB
+    * XAMPP 7.3.6 - Running 10.3.16-MariaDB or MySQL 8.0.17 
     * MongoDB - Running v4.0.10
     * Linux Distro: 
         Ubuntu 18.04.2 LTS
