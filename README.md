@@ -46,7 +46,7 @@ in MySQL/Maria.  The conversion of MySQL/MariaDB query results to Mongo DB is al
     ~/Development/pythong/workroot/DataFleaker/examples$ chmod 755 ConvertMongoDBResult_To_MySqlDB.py
     ~/Development/python/workroot/DataFleaker/examples$ ./ConvertMongoDBResult_To_MySqlDB.py
    
-   <b>Example-1: Simple  MongoDB query result Converted to Mysql DB.</b>
+   <b>Example-1: Simple Mongo DB query result converted to MySQL DB.</b>
      
     from DatabaseClass import DatabaseClass
     from MySQLClass import MySQLClass, MySQLEngineTypes
@@ -84,10 +84,10 @@ in MySQL/Maria.  The conversion of MySQL/MariaDB query results to Mongo DB is al
     dataFleakerClassInstance.setMySQLClassObjectToFleaker(mySqlDBClassInstance)
     # Convert Mongo DB results to a MySQL DB.
     dataFleakerClassInstance.dataFleakerMongoToMySQLMaria(collectionTableName,
-                                                          mongoDBClassInstance.mongoFindAll(collectionTableName),
-                                                          MySQLEngineTypes.MYISAM.value,
-                                                          True)
-  
+                                                        mongoDBClassInstance.mongoFindAll(collectionTableName),
+                                                        MySQLEngineTypes.MYISAM.value,
+                                                        True)
+ 
 ## Output:
     /usr/bin/python3.6 DataFleaker/examples/ConvertMongoDBResult_To_MySqlDB.py
     Creating Database Universe
@@ -103,7 +103,7 @@ in MySQL/Maria.  The conversion of MySQL/MariaDB query results to Mongo DB is al
     <img width="650" height="400" src="images/mongo_convert_to_mysql.png">
 </p>
 
-   <b>Example-2: Simple MariaDB query result converted to MongoDB.</b>
+   <b>Example-2: Simple Maria DB query result converted to MongoDB.</b>
    
     from DatabaseClass import DatabaseClass
     from MariaDBClass import MariaDBClass, MySQLEngineTypes
@@ -133,15 +133,15 @@ in MySQL/Maria.  The conversion of MySQL/MariaDB query results to Mongo DB is al
     # Convert Maria DB to Mongo DB.
     dataFleakerClassInstance.dataFleakerMySQLMariaToMongoDB("user", result)
 
-## mongoDB results - user table from mysql converted to mongoDB.
+## Mongo DB Results - User query from mysql DB converted to Mongo DB.
 <p align="left">
     <img width="950" height="450" src="images/maria_convert_to_mongo.png">
 </p>   
    
 
 ## Final Thoughts
-    If you have any questions or ideas that you might like to see implemented in this prototype you can 
-    email me at planckbit@att.net. Thanks. 
+    If you have any questions, ideas or pull request you like to contribute and see implemented you can 
+    email me at planckbit@att.net.
     
 ## License
 
